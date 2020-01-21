@@ -2,16 +2,16 @@
 <html>
 
 <head>
-   
+
     <title>Weather App</title>
-    
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" type=“text/css” href="/style.css">
+    <link rel="stylesheet" type=“text/css” href="/style.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <style>
-         body {
+        body {
             background-color: blue;
             /* display:flex; */
 
@@ -83,6 +83,12 @@
 
         .location-box {
             text-align: center;
+            border-style: solid;
+            border-radius: 2px;
+            border-width: 2px;
+            width: 30%;
+            margin: 0 auto;
+            margin-top:2%;
 
         }
 
@@ -93,31 +99,33 @@
             margin-top: 2%;
         }
 
-            .far{
-                color:yellow;
+        .far {
+            color: yellow;
             font-size: 480%;
-            }
+        }
 
-            .fas {
-                color:black;
+        .fas {
+            color: black;
             font-size: 480%;
-            }
+        }
 
-            .fa-temperature-high {
-                color:red;
+        .fa-temperature-high {
+            color: red;
             font-size: 480%;
-            }
-            .fa-temperature-low {
-                color:darkblue;
+        }
+
+        .fa-temperature-low {
+            color: darkblue;
             font-size: 480%;
-            }
-            .fa-wind {
-                color:darkgrey;
+        }
+
+        .fa-wind {
+            color: darkgrey;
             font-size: 480%;
-            }
+        }
 
 
-            
+
 
         /* CURRENT WEATHER PART */
         .current-weather-box {
@@ -129,16 +137,15 @@
             margin: 0 auto;
         }
 
-   
+
 
         /* FORECAST WEATHER PART */
         .forecast-weather-box {
             text-align: center;
         }
-    
-        </style>
+    </style>
 
-    
+
 </head>
 
 <body>
@@ -170,7 +177,8 @@
                     Current weather<br>
                     Cloudy: few clouds<br>
 
-                    <i class='fas fa-temperature-high' style='font-size:480%;color:black'></i><br>5 degrees Celcius (convert to Fahrenheit, convert to Kelvin)
+                    <i class='fas fa-temperature-high' style='font-size:480%;color:black'></i><br>5 degrees Celcius
+                    (convert to Fahrenheit, convert to Kelvin)
                     <br>
                     Feels like:<br>
                     <i class='fas fa-temperature-high'></i><br>
