@@ -86,7 +86,7 @@
             border-style: solid;
             border-radius: 2px;
             border-width: 2px;
-            width: 30%;
+            width: 60%;
             margin: 0 auto;
             margin-top:2%;
 
@@ -133,7 +133,7 @@
             border-style: solid;
             border-radius: 2px;
             border-width: 2px;
-            width: 30%;
+            width: 60%;
             margin: 0 auto;
         }
 
@@ -159,15 +159,15 @@
             </div>
 
             <!-- Queried city information -->
-            <div class="weather-wrap">
+            <div class="weather-wrap" v-if="typeof weather.main !='undefined'">
                 <div class="location-box">
 
-                    <p class="weather-location">Weather in London, UK, ... inhabitants</p><br>
+                    <p class="weather-location">Weather in {{weather.name}}, {{weather.sys.country}}</p><br>
                     Date<br>
                     <i class='far fa-sun'></i><br>
                     <i class='fas fa-sun'></i><br>
-                    Time zone<br>
-                    Coordinates<br><br>
+                    Time zone: {{weather.timezone}}<br>
+                    Coordinates: {{weather.coord.lon}}, {{weather.coord.lat}}<br><br>
 
                 </div>
 
@@ -177,16 +177,16 @@
                     Current weather<br>
                     Cloudy: few clouds<br>
 
-                    <i class='fas fa-temperature-high' style='font-size:480%;color:black'></i><br>5 degrees Celcius
-                    (convert to Fahrenheit, convert to Kelvin)
+                    <i class='fas fa-temperature-high' style='font-size:480%;color:black'></i>{{weather.main.temp}}°C °F °K
+                    
                     <br>
-                    Feels like:<br>
-                    <i class='fas fa-temperature-high'></i><br>
-                    <i class='fas fa-temperature-low'></i><br>
+                    Feels like:{{weather.main.feels_like}}°C<br>
+                    high<i class='fas fa-temperature-high'></i>{{weather.main.temp_max}}°C<br>
+                    low<i class='fas fa-temperature-low'></i>{{weather.main.temp_min}}°C<br>
 
                     Air pressure:<br>
                     Humidity:<br>
-                    Visibility:<br>
+                    Visibility:{{weather.visibility}} meters<br>
 
                     <i class='fas fa-wind'></i><br><br>
                     Wind direction (degrees):<br>

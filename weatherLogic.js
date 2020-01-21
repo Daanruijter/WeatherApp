@@ -7,56 +7,64 @@ let url = "https://api.openweathermap.org/data/2.5/weather?q=Manchester,uk&APPID
 
 
 
-var demo = new Vue({
+ const app = new Vue({
     el: '#app',
-    data: {  api_key: "fb2a017905db23f312a17b320e8c07d0",
-    query:''
+    data: {
+        api_key: "fb2a017905db23f312a17b320e8c07d0",
+        query: '',
+        url_base: "https://api.openweathermap.org/data/2.5/",
+        weather: {},
 
     },
 
-    created() {
+    // created() {
 
-        this.fetchData(url)
+    //     this.fetchData(url)
 
-    },
+    // },
 
     methods: {
         consoleLogger() {
             console.log("wat een lekker weer")
         },
-        fetchWatcher(){
-            console.log("tsss")
-            console.log(this.query)
+        async fetchWatcher(e) {
+
+            if (e.key == "Enter") {
+          
+                this.fetchData()
+
+            }
+
         },
 
 
-        
 
-        //Fetch the data from the Propublica website//
-           async fetchData(url) {
 
-            this.bookData = await fetch(url, {
-                    method: 'GET',
+        // //Fetch the data from the Propublica website//
+        async fetchData() {
 
-                })
-                .then(response => response.json()
+                  this.weather = await fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`)
+                    .then(response => response.json()
 
-                )
+                    )
 
-                .then(data => {
-                    console.log(data)
-                    return data
-                })
-                .catch(error => console.log(error))
-            // this.bookDataFiltered = this.bookData
+                    .then(data => {
+                        console.log(data)
+                        return data
+                    })
+                    .catch(error => console.log(error))
+                console.log(this.weather)
 
         }
     },
+    dateBuilder(){
+        
+    }
 
-    
 
 
-    
+
+
 
 });
 
