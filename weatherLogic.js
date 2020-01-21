@@ -1,35 +1,16 @@
-// let url = "https://api.openweathermap.org/data/2.5/weather?q=Manchester,uk&APPID=fb2a017905db23f312a17b320e8c07d0"
-
 let url = "https://api.openweathermap.org/data/2.5/weather?q=Manchester,uk&APPID=fb2a017905db23f312a17b320e8c07d0"
 
+// let url = "https://api.openweathermap.org/data/2.5/weather?q=Manchester,uk&APPID=fb2a017905db23f312a17b320e8c07d0"
 
-//     fetch(url, {
-//             method: 'GET',
-//             withCredentials: true,
-//             // headers: {
-
-//             //     "X-API-KEY": 'fb2a017905db23f312a17b320e8c07d0',
-//             //     'Content-Type': 'application/json'
-//             // }
-//         })
-
-//         .then(response => response.json())
-//         .then(data => {
-//             console.log(data)
-
-
-//         })
-//         .catch(error => console.log(error))
-
-// fetch()
+// let url = "https://api.openweathermap.org/data/2.5/forecast?q=Valencia,esp&APPID=fb2a017905db23f312a17b320e8c07d0"
 
 
 
-console.log("wat een lekker weer")
 
 var demo = new Vue({
     el: '#app',
-    data: {
+    data: {  api_key: "fb2a017905db23f312a17b320e8c07d0",
+    query:''
 
     },
 
@@ -42,6 +23,10 @@ var demo = new Vue({
     methods: {
         consoleLogger() {
             console.log("wat een lekker weer")
+        },
+        fetchWatcher(){
+            console.log("tsss")
+            console.log(this.query)
         },
 
 
@@ -75,5 +60,9 @@ var demo = new Vue({
 
 });
 
+
+
+
 //https://www.chartjs.org/docs/latest/configuration/animations.html//
 // https://home.openweathermap.org/api_keys
+// https://askubuntu.com/questions/833322/pair-bose-quietcomfort-35-with-ubuntu-over-bluetooth

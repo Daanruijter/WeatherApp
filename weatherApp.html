@@ -8,15 +8,105 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <style>
-      
+        body {
+            background-color: blue;
+
+        }
+
+        .search-box {
+            background-color: white;
+        }
+
+        input {
+            width: 30%;
+            margin-top: 5%;
+            margin-left: 10%;
+            border-style: solid;
+            border-radius: 2px;
+            border-color: blueviolet;
+            background-color: cadetblue;
+            color: white;
+            font-size: 130%;
+
+
+        }
+
+        ::-webkit-input-placeholder {
+            /* Edge */
+            color: white;
+            text-align: center;
+            font-size: 130%;
+        }
     </style>
 </head>
 
 <body>
 
-<div id="app">
+    <div id="app">
 
-</div>
+        <main>
+            <div class="search-box">
+                <input type="text" class="search-bar" placeholder="Check the weather in your city" v-model="query"
+                    @keypress="fetchWatcher">
+            </div>
+
+            <!-- Queried city information -->
+            <div class="city">
+                Weather in London, UK, ... inhabitants<br>
+                Sunrise<br>
+                Sunset<br>
+                Time zone<br>
+                Coordinates<br><br>
+            </div>
+
+            <!-- Current weather in queried city -->
+            <div class="current-weather">
+                Current weather<br>
+                Cloudy: few clouds<br>
+
+                Current temperature: 5 degrees Celcius (convert to Fahrenheit, convert to Kelvin)<br>
+                Feels like:<br>
+                Maximum temperature today:<br>
+                Minimum temperature today:<br>
+                
+                Air pressure:<br>
+                Humidity:<br>
+                Visibility:<br>
+               
+                Wind speed:<br>
+                Wind direction (degrees):<br>
+
+                Cloudiness:
+
+                Rain:
+                <br><br>
+            </div>
+
+            <!-- Weather forecast in queried city (5 days) -->
+
+            <div class="forecast-weather">
+                Current weather<br>
+                Cloudy: few clouds<br>
+
+                Current temperature: 5 degrees Celcius (convert to Fahrenheit, convert to Kelvin)<br>
+                Feels like:<br>
+                Maximum temperature today:<br>
+                Minimum temperature today:<br>
+                
+                Air pressure:<br>
+                Humidity:
+
+                Wind speed:<br>
+                Wind direction (degrees):<br>
+
+                Cloudiness:
+
+                Rain:
+                <br><br>
+            </div>
+        </main>
+
+    </div>
 
     <script src="weatherLogic.js"></script>
 
