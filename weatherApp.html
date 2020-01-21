@@ -164,19 +164,17 @@
 
                     <p class="weather-location">Weather in {{weather.name}}, {{weather.sys.country}}</p><br>
                     Date<br>
-                    <i class='far fa-sun'></i><br>
-                    <i class='fas fa-sun'></i><br>
+                    {{sunrise}}<i class='far fa-sun'></i><br>
+                    {{sunset}}<i class='fas fa-sun'></i><br>
                     Time zone: {{weather.timezone}}<br>
-                    Coordinates: {{weather.coord.lon}}, {{weather.coord.lat}}<br><br>
+                    Coordinates: {{weather.coord.lat}}, {{weather.coord.lon}}<br><br>
 
                 </div>
 
                 <!-- Current weather in queried city -->
 
                 <div class="current-weather-box">
-                    Current weather<br>
-                    Cloudy: few clouds<br>
-
+                    Current weather: {{weather.weather[0].description}}<br>
                     <i class='fas fa-temperature-high' style='font-size:480%;color:black'></i>{{weather.main.temp}}°C °F °K
                     
                     <br>
@@ -184,16 +182,14 @@
                     high<i class='fas fa-temperature-high'></i>{{weather.main.temp_max}}°C<br>
                     low<i class='fas fa-temperature-low'></i>{{weather.main.temp_min}}°C<br>
 
-                    Air pressure:<br>
-                    Humidity:<br>
+                    Air pressure:{{weather.main.pressure}}<br>
+                    Humidity:{{weather.main.humidity}}<br>
                     Visibility:{{weather.visibility}} meters<br>
 
-                    <i class='fas fa-wind'></i><br><br>
-                    Wind direction (degrees):<br>
+                    <i class='fas fa-wind'></i>{{weather.wind.speed}}<br><br>
+                    Wind direction: {{windDirection}}, in degrees: {{weather.wind.deg}}<br>
 
-                    Cloudiness:
-
-                    Rain:
+                    Percentage of cloud coverage: {{weather.clouds.all}}<br>
                     <br><br>
                 </div>
 
@@ -202,7 +198,7 @@
 
                 <div class="forecast-weather-box">
                     Current weather<br>
-                    Cloudy: few clouds<br>
+                    Cloudy: <br>
 
                     Current temperature: 5 degrees Celcius (convert to Fahrenheit, convert to Kelvin)<br>
                     Feels like:<br>
@@ -213,9 +209,9 @@
                     Humidity:
 
                     Wind speed:<br>
-                    Wind direction (degrees):<br>
+                    Wind direction:<br>
 
-                    Cloudiness:
+                    Cloudiness: 
 
                     Rain:
                     <br><br>
