@@ -2,34 +2,68 @@
 <html>
 
 <head>
+   
     <title>Weather App</title>
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" type=“text/css” href="/style.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <style>
-        body {
+         body {
             background-color: blue;
+            /* display:flex; */
 
         }
+
+
+        /* RULES ON WHOLE APP */
+
+        /* .app {
+            background-image: url();
+        } */
+
+
+        /*RULES ON MAIN OF THE APP */
+        main {
+            background-image: linear-gradient(to bottom, rgb(0, 0, 0, 0.25), rgb(0, 0, 0, 0.75));
+            width: 80%;
+            margin: 0 auto;
+
+
+        }
+
+        /* SEARCH PART */
 
         .search-box {
             background-color: white;
         }
 
-        input {
+        .search-bar {
             width: 30%;
             margin-top: 5%;
             margin-left: 10%;
             border-style: solid;
-            border-radius: 2px;
             border-color: blueviolet;
+            border-radius: 0px;
             background-color: cadetblue;
             color: white;
             font-size: 130%;
+            transition: 0.4;
 
 
         }
+
+        .search-bar:focus {
+            border-style: solid;
+            border-color: blueviolet;
+            border-radius: 15px;
+
+            background-color: chocolate;
+
+        }
+
 
         ::-webkit-input-placeholder {
             /* Edge */
@@ -37,7 +71,74 @@
             text-align: center;
             font-size: 130%;
         }
-    </style>
+
+        /* RULES ON THE WHOLE WEATHER DISPLAY PART */
+        .weather-wrap {
+            color: white;
+
+
+        }
+
+        /* WEATHER LOCATION PART */
+
+        .location-box {
+            text-align: center;
+
+        }
+
+        .weather-location {
+            color: yellow;
+            font-size: 180%;
+            font-weight: bold;
+            margin-top: 2%;
+        }
+
+            .far{
+                color:yellow;
+            font-size: 480%;
+            }
+
+            .fas {
+                color:black;
+            font-size: 480%;
+            }
+
+            .fa-temperature-high {
+                color:red;
+            font-size: 480%;
+            }
+            .fa-temperature-low {
+                color:darkblue;
+            font-size: 480%;
+            }
+            .fa-wind {
+                color:darkgrey;
+            font-size: 480%;
+            }
+
+
+            
+
+        /* CURRENT WEATHER PART */
+        .current-weather-box {
+            text-align: center;
+            border-style: solid;
+            border-radius: 2px;
+            border-width: 2px;
+            width: 30%;
+            margin: 0 auto;
+        }
+
+   
+
+        /* FORECAST WEATHER PART */
+        .forecast-weather-box {
+            text-align: center;
+        }
+    
+        </style>
+
+    
 </head>
 
 <body>
@@ -51,58 +152,66 @@
             </div>
 
             <!-- Queried city information -->
-            <div class="city">
-                Weather in London, UK, ... inhabitants<br>
-                Sunrise<br>
-                Sunset<br>
-                Time zone<br>
-                Coordinates<br><br>
-            </div>
+            <div class="weather-wrap">
+                <div class="location-box">
 
-            <!-- Current weather in queried city -->
-            <div class="current-weather">
-                Current weather<br>
-                Cloudy: few clouds<br>
+                    <p class="weather-location">Weather in London, UK, ... inhabitants</p><br>
+                    Date<br>
+                    <i class='far fa-sun'></i><br>
+                    <i class='fas fa-sun'></i><br>
+                    Time zone<br>
+                    Coordinates<br><br>
 
-                Current temperature: 5 degrees Celcius (convert to Fahrenheit, convert to Kelvin)<br>
-                Feels like:<br>
-                Maximum temperature today:<br>
-                Minimum temperature today:<br>
-                
-                Air pressure:<br>
-                Humidity:<br>
-                Visibility:<br>
-               
-                Wind speed:<br>
-                Wind direction (degrees):<br>
+                </div>
 
-                Cloudiness:
+                <!-- Current weather in queried city -->
 
-                Rain:
-                <br><br>
-            </div>
+                <div class="current-weather-box">
+                    Current weather<br>
+                    Cloudy: few clouds<br>
 
-            <!-- Weather forecast in queried city (5 days) -->
+                    <i class='fas fa-temperature-high' style='font-size:480%;color:black'></i><br>5 degrees Celcius (convert to Fahrenheit, convert to Kelvin)
+                    <br>
+                    Feels like:<br>
+                    <i class='fas fa-temperature-high'></i><br>
+                    <i class='fas fa-temperature-low'></i><br>
 
-            <div class="forecast-weather">
-                Current weather<br>
-                Cloudy: few clouds<br>
+                    Air pressure:<br>
+                    Humidity:<br>
+                    Visibility:<br>
 
-                Current temperature: 5 degrees Celcius (convert to Fahrenheit, convert to Kelvin)<br>
-                Feels like:<br>
-                Maximum temperature today:<br>
-                Minimum temperature today:<br>
-                
-                Air pressure:<br>
-                Humidity:
+                    <i class='fas fa-wind'></i><br><br>
+                    Wind direction (degrees):<br>
 
-                Wind speed:<br>
-                Wind direction (degrees):<br>
+                    Cloudiness:
 
-                Cloudiness:
+                    Rain:
+                    <br><br>
+                </div>
 
-                Rain:
-                <br><br>
+
+                <!-- Weather forecast in queried city (5 days) -->
+
+                <div class="forecast-weather-box">
+                    Current weather<br>
+                    Cloudy: few clouds<br>
+
+                    Current temperature: 5 degrees Celcius (convert to Fahrenheit, convert to Kelvin)<br>
+                    Feels like:<br>
+                    Maximum temperature today:<br>
+                    Minimum temperature today:<br>
+
+                    Air pressure:<br>
+                    Humidity:
+
+                    Wind speed:<br>
+                    Wind direction (degrees):<br>
+
+                    Cloudiness:
+
+                    Rain:
+                    <br><br>
+                </div>
             </div>
         </main>
 
