@@ -178,8 +178,8 @@
 
                     <p class="weather-location">Weather in {{weather.name}}, {{weather.sys.country}}</p><br>
                     Date<br>
-                    {{sunrise}}<i class='far fa-sun'></i><br>
-                    {{sunset}}<i class='fas fa-sun'></i><br>
+                    {{weather.sys.sunriseConverted}}<i class='far fa-sun'></i><br>
+                    {{weather.sys.sunsetConverted}}<i class='fas fa-sun'></i><br>
                     Time zone: {{weather.timezone}}<br>
                     Coordinates: {{weather.coord.lat}}, {{weather.coord.lon}}<br>
                     Population: {{weatherForecast.city.population}}<br><br>
@@ -202,7 +202,7 @@
                     Visibility:{{weather.visibility}} meters<br>
 
                     <i class='fas fa-wind'></i>{{weather.wind.speed}}<br><br>
-                    Wind direction: {{windDirection}}, in degrees: {{weather.wind.deg}}<br>
+                    Wind direction: {{weather.wind.windDirection}}, in degrees: {{weather.wind.deg}}<br>
 
                     Percentage of cloud coverage: {{weather.clouds.all}}<br>
                     <br><br>

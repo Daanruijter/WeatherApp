@@ -14,17 +14,10 @@ const app = new Vue({
         query: '',
         url_base: "https://api.openweathermap.org/data/2.5/",
         weather: {},
-        sunset: '',
-        sunrise: '',
-        windDirection: '',
-
-
-
+       
         //Forecasted data//
         weatherForecast: {},
-        sunsetForecast: '',
-        sunriseForecast: '',
-        windDirectionForecast: '',
+  
 
     },
 
@@ -145,6 +138,7 @@ const app = new Vue({
             }
 
             this.windDirection = windDirection
+            return windDirection
             console.log(windDirection)
 
 
@@ -203,9 +197,9 @@ const app = new Vue({
             
 
             console.log(this.weather)
-            this.sunrise = this.convertUnixTimeStapToTime(this.weather.sys.sunrise)
-            this.sunset = this.convertUnixTimeStapToTime(this.weather.sys.sunset)
-            this.convertWindDegreesToWindDirection(this.weather.wind.deg)
+            this.weather.sys.sunriseConverted = this.convertUnixTimeStapToTime(this.weather.sys.sunrise)
+            this.weather.sys.sunsetConverted = this.convertUnixTimeStapToTime(this.weather.sys.sunset)
+            this.weather.wind.windDirection = this.convertWindDegreesToWindDirection(this.weather.wind.deg)
             
             this.weather.main.tempFahrenheit = this.convertCelsiusToFahrenheit(this.weather.main.temp)
             this.weather.main.feels_likeFahrenheit = this.convertCelsiusToFahrenheit(this.weather.main.feels_like)
