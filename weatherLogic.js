@@ -18,7 +18,9 @@ const app = new Vue({
         sunrise: '',
         windDirection: '',
 
-        
+
+
+        //Forecasted data//
         weatherForecast: {},
         sunsetForecast: '',
         sunriseForecast: '',
@@ -41,7 +43,7 @@ const app = new Vue({
             if (e.key == "Enter") {
 
                 this.fetchData()
-                this.fetchForecastData()
+
 
 
             }
@@ -72,7 +74,7 @@ const app = new Vue({
         },
         convertWindDegreesToWindDirection(windDegrees) {
             console.log("hallo")
-            
+
             let windDirection = ''
             console.log(windDirection)
             console.log(windDegrees)
@@ -92,7 +94,7 @@ const app = new Vue({
             if (windDegrees >= 78.75 && windDegrees <= 101.25) {
                 console.log("equation works")
                 windDirection = "E"
-            }  
+            }
             if (windDegrees >= 101.25 && windDegrees <= 123.75) {
                 console.log("equation works")
                 windDirection = "ESE"
@@ -124,7 +126,7 @@ const app = new Vue({
             if (windDegrees >= 258.75 && windDegrees <= 281.25) {
                 console.log("equation works")
                 windDirection = "W"
-            }            
+            }
             if (windDegrees >= 281.25 && windDegrees <= 303.75) {
                 console.log("equation works")
                 windDirection = "WNW"
@@ -141,13 +143,21 @@ const app = new Vue({
                 console.log("equation works")
                 windDirection = "N"
             }
-            
+
             this.windDirection = windDirection
             console.log(windDirection)
 
 
 
         },
+        convertCelsiusToFahrenheit(celsius) {
+            let fahrenheit = ((celsius * 1.8000) + 32)
+            console.log(fahrenheit)
+        },
+        convertCelsiusToKelvin() {
+
+        },
+
         dateBuilder() {
 
         },
@@ -156,6 +166,17 @@ const app = new Vue({
 
         // //Fetch the data from the Propublica website//
         async fetchData() {
+
+            this.weatherForecast = await fetch(`${this.url_base}forecast?q=${this.query}&units=metric&APPID=${this.api_key}`)
+            .then(response => response.json()
+
+            )
+
+            .then(data => {
+              
+                return data
+            })
+            .catch(error => console.log(error))
 
             this.weather = await fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`)
                 .then(response => response.json()
@@ -166,36 +187,23 @@ const app = new Vue({
                     console.log(data)
                     return data
                 })
+
                 .catch(error => console.log(error))
+            
+            
+
             console.log(this.weather)
             this.sunrise = this.convertUnixTimeStapToTime(this.weather.sys.sunrise)
             this.sunset = this.convertUnixTimeStapToTime(this.weather.sys.sunset)
             this.convertWindDegreesToWindDirection(this.weather.wind.deg)
+            // this.convertCelsiusToFahrenheit(this.weather.main.temp)
+
+            // this.weather.main.tempFahrenheit = "test"
 
 
         },
-        async fetchForecastData() {
-
-            this.weatherForecast = await fetch(`${this.url_base}forecast?q=${this.query}&units=metric&APPID=${this.api_key}`)
-                .then(response => response.json()
-
-                )
-
-                .then(data => {
-                    console.log(data)
-                    return data
-                })
-                .catch(error => console.log(error))
-            console.log(this.weatherForecast)
-     
-        }
+       
     },
-
-
-
-
-
-
 
 });
 

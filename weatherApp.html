@@ -12,9 +12,11 @@
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <style>
         body {
-            background-color: blue;
+            /* background-color: blue; */
             /* display:flex; */
-
+            
+            background-image: url('clouds.JPG');
+        
         }
 
 
@@ -30,6 +32,10 @@
             background-image: linear-gradient(to bottom, rgb(0, 0, 0, 0.25), rgb(0, 0, 0, 0.75));
             width: 80%;
             margin: 0 auto;
+            border-style: solid;
+            border-width: 0px;
+            border-radius: 20px;
+            
 
 
         }
@@ -37,20 +43,28 @@
         /* SEARCH PART */
 
         .search-box {
-            background-color: white;
+            background-color: purple;
+            border-style: solid;
+            border-color: purple;
+            border-width: 2px;
+            border-radius: 20px;
+            width: 80%;
+            margin: 0 auto;
         }
 
         .search-bar {
             width: 30%;
-            margin-top: 5%;
+            margin-bottom: 2%;
+            margin-top: 2%;
             margin-left: 10%;
             border-style: solid;
             border-color: blueviolet;
-            border-radius: 0px;
+            border-radius: 20px;
             background-color: cadetblue;
             color: white;
             font-size: 130%;
             transition: 0.4;
+            text-align: center;
 
 
         }
@@ -152,12 +166,12 @@
 
     <div id="app">
 
-        <main>
+       
             <div class="search-box">
                 <input type="text" class="search-bar" placeholder="Check the weather in your city" v-model="query"
                     @keypress="fetchWatcher">
             </div>
-
+            <main>
             <!-- Queried city information -->
             <div class="weather-wrap" v-if="typeof weather.main !='undefined'">
                 <div class="location-box">

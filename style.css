@@ -8,9 +8,9 @@
 
         /* RULES ON WHOLE APP */
 
-        /* .app {
-            background-image: url();
-        } */
+        .app {
+            background-image: url('./BackgroundPictures.coulds.jpg');
+        }
 
 
         /*RULES ON MAIN OF THE APP */
