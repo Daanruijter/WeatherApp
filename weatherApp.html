@@ -40,6 +40,15 @@
 
         }
 
+
+        .warm {
+            background-image: linear-gradient(to bottom, rgb(255, 0, 0, 0.25), rgb(255, 0, 0, 0.75));
+        }
+        .cold {
+            background-image: linear-gradient(to bottom, rgb(0, 0, 255, 0.25), rgb(0, 0, 255, 0.75));
+
+        }
+
         /* SEARCH PART */
 
         .search-box {
@@ -171,7 +180,7 @@
                 <input type="text" class="search-bar" placeholder="Check the weather in your city" v-model="query"
                     @keypress="fetchWatcher">
             </div>
-            <main>
+            <main :class="{warm : typeof weather.main != 'undefined' && weather.main.temp > 25, cold : typeof weather.main != 'undefined' && Number(weather.main.temp) < Number(10)}">
             <!-- Queried city information -->
             <div class="weather-wrap" v-if="typeof weather.main !='undefined'">
                 <div class="location-box">
