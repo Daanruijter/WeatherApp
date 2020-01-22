@@ -190,12 +190,12 @@
 
                 <div class="current-weather-box">
                     Current weather: {{weather.weather[0].description}}<br>
-                    <i class='fas fa-temperature-high' style='font-size:480%;color:black'></i>{{weather.main.temp}}°C °F °K
+                    <i class='fas fa-temperature-high' style='font-size:480%;color:black'></i>{{weather.main.temp}}°C {{weather.main.tempFahrenheit}}°F {{weather.main.tempKelvin}}°K
                     
                     <br>
-                    Feels like:{{weather.main.feels_like}}°C<br>
-                    high<i class='fas fa-temperature-high'></i>{{weather.main.temp_max}}°C<br>
-                    low<i class='fas fa-temperature-low'></i>{{weather.main.temp_min}}°C<br>
+                    Feels like:{{weather.main.feels_like}}°C {{weather.main.feels_likeFahrenheit}}°F {{weather.main.feels_likeKelvin}}°K<br>
+                    high<i class='fas fa-temperature-high'></i>{{weather.main.temp_max}}°C {{weather.main.temp_maxFahrenheit}}°F {{weather.main.temp_max}}°K<br>
+                    low<i class='fas fa-temperature-low'></i>{{weather.main.temp_min}}°C {{weather.main.temp_minFahrenheit}}°F {{weather.main.temp_minKelvin}}°K<br>
 
                     Air pressure:{{weather.main.pressure}}<br>
                     Humidity:{{weather.main.humidity}}<br>

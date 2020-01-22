@@ -151,12 +151,21 @@ const app = new Vue({
 
         },
         convertCelsiusToFahrenheit(celsius) {
-            let fahrenheit = ((celsius * 1.8000) + 32)
+            let fahrenheit = Math.round( ((celsius * 1.8000) + 32) * 10 ) / 10;
             console.log(fahrenheit)
             return fahrenheit
         },
-        convertCelsiusToKelvin() {
-
+        convertCelsiusToKelvin(celsius) {
+            let kelvin = Math.round( (celsius + 273.15) * 10 ) / 10;
+            
+            console.log(kelvin)
+            return kelvin
+            
+        },
+        temperatureRounder(celsius){
+            console.log(celsius)
+            let celsiusRounded = Math.round( (celsius) * 10 ) / 10
+            return celsiusRounded
         },
 
         dateBuilder() {
@@ -202,6 +211,14 @@ const app = new Vue({
             this.weather.main.feels_likeFahrenheit = this.convertCelsiusToFahrenheit(this.weather.main.feels_like)
             this.weather.main.temp_maxFahrenheit = this.convertCelsiusToFahrenheit(this.weather.main.temp_max)
             this.weather.main.temp_minFahrenheit = this.convertCelsiusToFahrenheit(this.weather.main.temp_min)
+            this.weather.main.tempKelvin = this.convertCelsiusToKelvin(this.weather.main.temp)
+            this.weather.main.feels_likeKelvin = this.convertCelsiusToKelvin(this.weather.main.feels_like)
+            this.weather.main.temp_maxKelvin = this.convertCelsiusToKelvin(this.weather.main.temp_max)
+            this.weather.main.temp_minKelvin = this.convertCelsiusToKelvin(this.weather.main.temp_min)
+            this.weather.main.temp=this.temperatureRounder(this.weather.main.temp)
+            this.weather.main.feels_like=this.temperatureRounder(this.weather.main.feels_like)
+            this.weather.main.temp_max=this.temperatureRounder(this.weather.main.temp_max)
+            this.weather.main.temp_min=this.temperatureRounder(this.weather.main.temp_min)
      
 
 
