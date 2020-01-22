@@ -141,30 +141,30 @@ const app = new Vue({
 
             // Will display time in 10:30:23 format
             let formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-            console.log(day)
-            console.log(weekDay)
-            console.log(date)
-            console.log(dateNumber)
-            console.log(month)
-            console.log(monthName)
-            console.log(monthNumber)
-            console.log(year)
+            // console.log(day)
+            // console.log(weekDay)
+            // console.log(date)
+            // console.log(dateNumber)
+            // console.log(month)
+            // console.log(monthName)
+            // console.log(monthNumber)
+            // console.log(year)
 
-            console.log(formattedTime);
+            // console.log(formattedTime);
 
             return {
-                seconds:seconds,
-                minutes:minutes,
-                hours:hours,
+                seconds: seconds,
+                minutes: minutes,
+                hours: hours,
                 day: day,
                 weekDay: weekDay,
-                date:date,
-                dateNumber:dateNumber,
-                month:month,
-                monthName:monthName,
-                monthNumber:monthNumber,
-                year:year,
-                date:date,
+                date: date,
+                dateNumber: dateNumber,
+                month: month,
+                monthName: monthName,
+                monthNumber: monthNumber,
+                year: year,
+                date: date,
                 formattedTime: formattedTime,
 
             }
@@ -268,16 +268,95 @@ const app = new Vue({
         dateBuilder() {
 
         },
-        datalogger() {
+
+        forecastedWeatherBuilder() {
+            
+            let monday = []
+            let tuesday = []
+            let wednesday = []
+            let thursday = []
+            let friday = []
+            let saturday = []
+            let sunday = []
 
             for (i = 0; i < this.weatherForecast.list.length; i++) {
-                console.log("s")
-                console.log(this.weatherForecast.list[i].main.temp)
-                console.log(this.convertUnixTimeStapToTime(this.weatherForecast.list[i].dt).formattedTime)
-                console.log(this.weatherForecast.list[i].main.temp)
+                console.log(this.weatherForecast.list[i].main.temp_max)
+                let listItem = this.weatherForecast.list
+
+                let dayNumber = this.convertUnixTimeStapToTime(this.weatherForecast.list[i].dt).day
+
+                let firstDayOfTheSetNumber = this.convertUnixTimeStapToTime(this.weatherForecast.list[0].dt).day
+
+                console.log(dayNumber, firstDayOfTheSetNumber)
+
+               
+
+                if (dayNumber === 1) {
+                    console.log("it's the first day of the range")
+                    monday.push(listItem[i].main.temp)
+
+
+                }
+                if (dayNumber === 2) {
+
+                    console.log("it's the second day of the range")
+                    tuesday.push(listItem[i].main.temp)
+
+                }
+                if (dayNumber === 3) {
+
+                    console.log("it's the third day of the range")
+                    wednesday.push(listItem[i].main.temp)
+
+                }
+                if (dayNumber === 4) {
+
+                    console.log("it's the fourth day of the range")
+                    thursday.push(listItem[i].main.temp)
+
+                }
+                if (dayNumber === 5) {
+
+                    console.log("it's the fifth day of the range")
+                    friday.push(listItem[i].main.temp)
+
+                }
+                if (dayNumber === 6) {
+
+                    console.log("it's the sixth day of the range")
+                    saturday.push(listItem[i].main.temp)
+
+                }
+                if (dayNumber === 0) {
+
+                    console.log("it's the zeventh day of the range")
+                    sunday.push(listItem[i].main.temp)
+
+                }
+              
+                this.weatherForecast.monday = monday
+                this.weatherForecast.tuesday = tuesday
+                this.weatherForecast.wednesday = wednesday
+                this.weatherForecast.thursday = thursday
+                this.weatherForecast.friday = friday
+                this.weatherForecast.saturday = saturday
+                this.weatherForecast.sunday = sunday
+
             }
 
+
+
         },
+        // datalogger() {
+
+        //     for (i = 0; i < this.weatherForecast.list.length; i++) {
+        //         console.log("s")
+        //         console.log(this.weatherForecast.list[i].main.temp)
+        //         console.log(this.convertUnixTimeStapToTime(this.weatherForecast.list[i].dt).formattedTime)
+        //         console.log(this.weatherForecast.list[i].main.temp)
+        //     }
+
+        // },
 
 
         // //Fetch the data from the Propublica website//
@@ -326,8 +405,8 @@ const app = new Vue({
             this.weather.main.temp_max = this.temperatureRounder(this.weather.main.temp_max)
             this.weather.main.temp_min = this.temperatureRounder(this.weather.main.temp_min)
 
-            this.datalogger()
-
+            // this.datalogger()
+            this.forecastedWeatherBuilder()
 
 
 
