@@ -18,6 +18,12 @@ const app = new Vue({
         sunrise: '',
         windDirection: '',
 
+        
+        weatherForecast: {},
+        sunsetForecast: '',
+        sunriseForecast: '',
+        windDirectionForecast: '',
+
     },
 
     // created() {
@@ -35,6 +41,7 @@ const app = new Vue({
             if (e.key == "Enter") {
 
                 this.fetchData()
+                this.fetchForecastData()
 
 
             }
@@ -166,6 +173,21 @@ const app = new Vue({
             this.convertWindDegreesToWindDirection(this.weather.wind.deg)
 
 
+        },
+        async fetchForecastData() {
+
+            this.weatherForecast = await fetch(`${this.url_base}forecast?q=${this.query}&units=metric&APPID=${this.api_key}`)
+                .then(response => response.json()
+
+                )
+
+                .then(data => {
+                    console.log(data)
+                    return data
+                })
+                .catch(error => console.log(error))
+            console.log(this.weatherForecast)
+     
         }
     },
 
