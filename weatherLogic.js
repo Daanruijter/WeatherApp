@@ -197,10 +197,15 @@ const app = new Vue({
             this.sunrise = this.convertUnixTimeStapToTime(this.weather.sys.sunrise)
             this.sunset = this.convertUnixTimeStapToTime(this.weather.sys.sunset)
             this.convertWindDegreesToWindDirection(this.weather.wind.deg)
+            
             this.weather.main.tempFahrenheit = this.convertCelsiusToFahrenheit(this.weather.main.temp)
-            console.log(this.weather.main.temp)
-            console.log(this.weather.main.tempFahrenheit)
-            console.log(this.convertCelsiusToFahrenheit(this.weather.main.temp))
+            this.weather.main.feels_likeFahrenheit = this.convertCelsiusToFahrenheit(this.weather.main.feels_like)
+            this.weather.main.temp_maxFahrenheit = this.convertCelsiusToFahrenheit(this.weather.main.temp_max)
+            this.weather.main.temp_minFahrenheit = this.convertCelsiusToFahrenheit(this.weather.main.temp_min)
+     
+
+
+                
 
             
 
