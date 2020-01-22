@@ -14,10 +14,10 @@ const app = new Vue({
         query: '',
         url_base: "https://api.openweathermap.org/data/2.5/",
         weather: {},
-       
+
         //Forecasted data//
         weatherForecast: {},
-  
+
 
     },
 
@@ -49,140 +49,241 @@ const app = new Vue({
 
             // Create a new JavaScript Date object based on the timestamp
             // multiplied by 1000 so that the argument is in milliseconds, not seconds.
-            var date = new Date(unix_timestamp * 1000);
+            let date = new Date(unix_timestamp * 1000);
+
+
+            //get the day in letters//
+            let day = date.getDay();
+            let weekDay = ''
+
+            if (day === 0) {
+                weekDay = "Sunday"
+            }
+            if (day === 1) {
+                weekDay = "Monday"
+            }
+            if (day === 2) {
+                weekDay = "Tuesday"
+            }
+            if (day === 3) {
+                weekDay = "Wednesday"
+            }
+            if (day === 4) {
+                weekDay = "Thursday"
+            }
+            if (day === 5) {
+                weekDay = "Friday"
+            }
+            if (day === 6) {
+                weekDay = "Saturday"
+            }
+
+            //get the day number in month in letters//
+            let dateNumber = date.getDate()
+
+            //get the month in letters//
+            let month = date.getMonth();
+
+            //get the month in numbers//
+            let monthNumber = month + 1
+            let monthName = ''
+
+            if (month === 0) {
+                monthName = "January"
+            }
+            if (month === 1) {
+                monthName = "February"
+            }
+            if (month === 2) {
+                monthName = "March"
+            }
+            if (month === 3) {
+                monthName = "April"
+            }
+            if (month === 4) {
+                monthName = "May"
+            }
+            if (month === 5) {
+                monthName = "June"
+            }
+            if (month === 6) {
+                monthName = "July"
+            }
+            if (month === 7) {
+                monthName = "August"
+            }
+            if (month === 8) {
+                monthName = "September"
+            }
+            if (month === 9) {
+                monthName = "Oktober"
+            }
+            if (month === 10) {
+                monthName = "November"
+            }
+            if (month === 11) {
+                monthName = "December"
+            }
+
+            //get the year//
+            let year = date.getFullYear()
+
+
+
+
+
             // Hours part from the timestamp
-            var hours = date.getHours();
+            let hours = date.getHours();
             // Minutes part from the timestamp
-            var minutes = "0" + date.getMinutes();
+            let minutes = "0" + date.getMinutes();
             // Seconds part from the timestamp
-            var seconds = "0" + date.getSeconds();
+            let seconds = "0" + date.getSeconds();
 
             // Will display time in 10:30:23 format
-            var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-
+            let formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+            console.log(day)
+            console.log(weekDay)
+            console.log(date)
+            console.log(dateNumber)
+            console.log(month)
+            console.log(monthName)
+            console.log(monthNumber)
+            console.log(year)
 
             console.log(formattedTime);
-            return formattedTime
+
+            return {
+                seconds:seconds,
+                minutes:minutes,
+                hours:hours,
+                day: day,
+                weekDay: weekDay,
+                date:date,
+                dateNumber:dateNumber,
+                month:month,
+                monthName:monthName,
+                monthNumber:monthNumber,
+                year:year,
+                date:date,
+                formattedTime: formattedTime,
+
+            }
 
         },
         convertWindDegreesToWindDirection(windDegrees) {
-            console.log("hallo")
+
 
             let windDirection = ''
-            console.log(windDirection)
-            console.log(windDegrees)
+
 
             if (windDegrees >= 11.25 && windDegrees <= 33.75) {
-                console.log("equation works")
+
                 windDirection = "NNE"
             }
             if (windDegrees >= 33.75 && windDegrees <= 56.25) {
-                console.log("equation works")
+
                 windDirection = "NE"
             }
             if (windDegrees >= 56.25 && windDegrees <= 78.75) {
-                console.log("equation works")
+
                 windDirection = "ENE"
             }
             if (windDegrees >= 78.75 && windDegrees <= 101.25) {
-                console.log("equation works")
+
                 windDirection = "E"
             }
             if (windDegrees >= 101.25 && windDegrees <= 123.75) {
-                console.log("equation works")
+
                 windDirection = "ESE"
             }
             if (windDegrees >= 123.75 && windDegrees <= 146.25) {
-                console.log("equation works")
+
                 windDirection = "SE"
             }
             if (windDegrees >= 146.25 && windDegrees <= 168.75) {
-                console.log("equation works")
+
                 windDirection = "SSE"
             }
             if (windDegrees >= 168.75 && windDegrees <= 191.25) {
-                console.log("equation works")
+
                 windDirection = "S"
             }
             if (windDegrees >= 191.25 && windDegrees <= 213.75) {
-                console.log("equation works")
+
                 windDirection = "SSW"
             }
             if (windDegrees >= 213.75 && windDegrees <= 236.25) {
-                console.log("equation works")
+
                 windDirection = "SW"
             }
             if (windDegrees >= 236.25 && windDegrees <= 258.75) {
-                console.log("equation works")
+
                 windDirection = "WSW"
             }
             if (windDegrees >= 258.75 && windDegrees <= 281.25) {
-                console.log("equation works")
+
                 windDirection = "W"
             }
             if (windDegrees >= 281.25 && windDegrees <= 303.75) {
-                console.log("equation works")
+
                 windDirection = "WNW"
             }
             if (windDegrees >= 303.75 && windDegrees <= 326.25) {
-                console.log("equation works")
+
                 windDirection = "NW"
             }
             if (windDegrees >= 326.25 && windDegrees <= 348.75) {
-                console.log("equation works")
+
                 windDirection = "NNW"
             }
             if (windDegrees <= 11.25 || windDegrees > 348.75) {
-                console.log("equation works")
+
                 windDirection = "N"
             }
 
             this.windDirection = windDirection
             return windDirection
-            console.log(windDirection)
+
 
 
 
         },
         convertCelsiusToFahrenheit(celsius) {
-            let fahrenheit = Math.round( ((celsius * 1.8000) + 32) * 10 ) / 10;
-            console.log(fahrenheit)
+            let fahrenheit = Math.round(((celsius * 1.8000) + 32) * 10) / 10;
+
             return fahrenheit
         },
         convertCelsiusToKelvin(celsius) {
-            let kelvin = Math.round( (celsius + 273.15) * 10 ) / 10;
-            
-            console.log(kelvin)
+            let kelvin = Math.round((celsius + 273.15) * 10) / 10;
+
+
             return kelvin
-            
+
         },
-        temperatureRounder(celsius){
-            console.log(celsius)
-            let celsiusRounded = Math.round( (celsius) * 10 ) / 10
+        temperatureRounder(celsius) {
+            let celsiusRounded = Math.round((celsius) * 10) / 10
             return celsiusRounded
         },
 
         dateBuilder() {
 
         },
+        datalogger() {
 
+            for (i = 0; i < this.weatherForecast.list.length; i++) {
+                console.log("s")
+                console.log(this.weatherForecast.list[i].main.temp)
+                console.log(this.convertUnixTimeStapToTime(this.weatherForecast.list[i].dt).formattedTime)
+                console.log(this.weatherForecast.list[i].main.temp)
+            }
+
+        },
 
 
         // //Fetch the data from the Propublica website//
         async fetchData() {
 
             this.weatherForecast = await fetch(`${this.url_base}forecast?q=${this.query}&units=metric&APPID=${this.api_key}`)
-            .then(response => response.json()
-
-            )
-
-            .then(data => {
-              
-                return data
-            })
-            .catch(error => console.log(error))
-
-            this.weather = await fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`)
                 .then(response => response.json()
 
                 )
@@ -191,16 +292,27 @@ const app = new Vue({
                     console.log(data)
                     return data
                 })
+                .catch(error => console.log(error))
+
+            this.weather = await fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`)
+                .then(response => response.json()
+
+                )
+
+                .then(data => {
+
+                    return data
+                })
 
                 .catch(error => console.log(error))
-            
-            
 
-            console.log(this.weather)
-            this.weather.sys.sunriseConverted = this.convertUnixTimeStapToTime(this.weather.sys.sunrise)
-            this.weather.sys.sunsetConverted = this.convertUnixTimeStapToTime(this.weather.sys.sunset)
+
+
+
+            this.weather.sys.sunriseConverted = this.convertUnixTimeStapToTime(this.weather.sys.sunrise).formattedTime
+            this.weather.sys.sunsetConverted = this.convertUnixTimeStapToTime(this.weather.sys.sunset).formattedTime
             this.weather.wind.windDirection = this.convertWindDegreesToWindDirection(this.weather.wind.deg)
-            
+
             this.weather.main.tempFahrenheit = this.convertCelsiusToFahrenheit(this.weather.main.temp)
             this.weather.main.feels_likeFahrenheit = this.convertCelsiusToFahrenheit(this.weather.main.feels_like)
             this.weather.main.temp_maxFahrenheit = this.convertCelsiusToFahrenheit(this.weather.main.temp_max)
@@ -209,19 +321,18 @@ const app = new Vue({
             this.weather.main.feels_likeKelvin = this.convertCelsiusToKelvin(this.weather.main.feels_like)
             this.weather.main.temp_maxKelvin = this.convertCelsiusToKelvin(this.weather.main.temp_max)
             this.weather.main.temp_minKelvin = this.convertCelsiusToKelvin(this.weather.main.temp_min)
-            this.weather.main.temp=this.temperatureRounder(this.weather.main.temp)
-            this.weather.main.feels_like=this.temperatureRounder(this.weather.main.feels_like)
-            this.weather.main.temp_max=this.temperatureRounder(this.weather.main.temp_max)
-            this.weather.main.temp_min=this.temperatureRounder(this.weather.main.temp_min)
-     
+            this.weather.main.temp = this.temperatureRounder(this.weather.main.temp)
+            this.weather.main.feels_like = this.temperatureRounder(this.weather.main.feels_like)
+            this.weather.main.temp_max = this.temperatureRounder(this.weather.main.temp_max)
+            this.weather.main.temp_min = this.temperatureRounder(this.weather.main.temp_min)
+
+            this.datalogger()
 
 
-                
 
-            
 
         },
-       
+
     },
 
 });
