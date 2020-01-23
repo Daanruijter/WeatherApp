@@ -293,6 +293,7 @@ const app = new Vue({
             var chart = new Chart(ctx, {
                 // The type of chart we want to create
                 type: 'line',
+                
 
                 // The data for our dataset
                 data: {
@@ -300,16 +301,31 @@ const app = new Vue({
                     labels: time,
                     
                     datasets: [{
+                        fontSize: 40,
                         label: 'My First dataset',
                         // backgroundColor: 'rgb(255, 99, 132)',
                         borderColor: 'rgb(255, 99, 132)',
                         data: temperature,
                         
+                    }, {
+                        label: 'My First dataset',
+                        // backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: feelsLike,
+                        
                     }]
                 },
 
                 // Configuration options go here
-                options: {}
+                options: {
+                    scales: {
+                       xAxes: [{
+                               ticks: {
+                                fontSize: 40
+                               }
+                              }]
+                            }
+                         }
             });
         }
         },
