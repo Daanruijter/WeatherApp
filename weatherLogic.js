@@ -304,10 +304,14 @@ const app = new Vue({
                         console.log(dayOfTheWeekNumberArray)
                         console.log(dayOfTheWeekNumberArrayOnlyUniqueNumbers)
                         console.log(dateArrayOnlyUniqueNumbers)
+
+                       
                         
                         
 
                     }
+                    dateArrayOnlyUniqueNumbers.shift()
+                    this.weatherForecast.dateArrayOnlyUniqueNumbers = dateArrayOnlyUniqueNumbers
                     },
                     createChart() {
 
@@ -378,13 +382,13 @@ const app = new Vue({
                                         scales: {
                                             xAxes: [{
                                                 ticks: {
-                                                    fontSize: 20,
+                                                    fontSize: 30,
                                                     fontColor: 'white',
                                                 }
                                             }],
                                             yAxes: [{
                                                 ticks: {
-                                                    fontSize: 20,
+                                                    fontSize: 30,
                                                     fontColor: 'white',
                                                 }
                                             }],
@@ -394,7 +398,7 @@ const app = new Vue({
                                             labels: {
                                                 // This more specific font property overrides the global property
                                                 fontColor: 'white',
-                                                fontSize: 20,
+                                                fontSize: 30,
                                             }
                                         }
 
