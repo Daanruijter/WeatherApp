@@ -99,6 +99,7 @@
         /* RULES ON THE WHOLE WEATHER DISPLAY PART */
         .weather-wrap {
             color: white;
+            display:flex;
 
 
         }
@@ -106,62 +107,79 @@
         /* WEATHER LOCATION PART */
 
         .location-box {
-            text-align: center;
+            /* text-align: center; */
             border-style: solid;
-            border-radius: 2px;
+            border-radius: 20px;
             border-width: 2px;
-            width: 60%;
-            margin: 0 auto;
-            margin-top: 2%;
+            width: 50%;
+            font-size: 130%;
+            padding-left: 13%;
+            /* margin: 0 auto; */
+            
 
         }
 
         .weather-location {
             color: yellow;
-            font-size: 180%;
+            
             font-weight: bold;
             margin-top: 2%;
+            
         }
 
         .far {
             color: yellow;
-            font-size: 480%;
+            font-size: 240%;
         }
 
         .fas {
             color: black;
-            font-size: 480%;
+            font-size: 240%;
         }
 
         .fa-temperature-high {
             color: red;
-            font-size: 480%;
+            font-size: 240%;
         }
 
         .fa-temperature-low {
             color: darkblue;
-            font-size: 480%;
+            font-size: 240%;
         }
 
         .fa-wind {
-            color: darkgrey;
-            font-size: 480%;
+            color: brown;
+            font-size: 240%;
         }
 
 
 
 
         /* CURRENT WEATHER PART */
+
+        
+
         .current-weather-box {
-            text-align: center;
+            /* text-align: center; */
+            padding-left: 13%;
             border-style: solid;
             border-radius: 2px;
             border-width: 2px;
-            width: 60%;
-            margin: 0 auto;
+            border-radius: 20px;
+            width: 50%;
+            font-size: 130%;
+            /* margin: 0 auto; */
         }
 
-
+        .weather-type {
+            color:darkorange;
+            background-color: darkgreen;
+            width: 50%;
+            border-radius: 40%;
+            text-align:center;
+            font-size: 120%;
+            
+        }
 
         /* FORECAST WEATHER PART */
         .forecast-weather-box {
@@ -173,7 +191,7 @@
             width: 70% !important;
             height: 50% !important;
             font-size: 350% !important;
-            
+
         }
     </style>
 
@@ -183,55 +201,58 @@
 <body>
 
     <div id="app">
+       
 
+            <div class="search-box">
+                <input type="text" id="inputField" class="search-bar" text="london"
+                    placeholder="Check the weather in your city" v-model="query" @keypress="fetchWatcher">
+            </div>
 
-        <div class="search-box">
-            <input type="text" id="inputField" class="search-bar" text="london"
-                placeholder="Check the weather in your city" v-model="query" @keypress="fetchWatcher">
-        </div>
+            <main
+                :class="{warm : typeof weather.main != 'undefined' && weather.main.temp > 25, cold : typeof weather.main != 'undefined' && Number(weather.main.temp) < Number(10)}">
+                <!-- Queried city information -->
+                <div class="weather-wrap" v-if="typeof weather.main !='undefined'">
+                    
 
-        <main
-            :class="{warm : typeof weather.main != 'undefined' && weather.main.temp > 25, cold : typeof weather.main != 'undefined' && Number(weather.main.temp) < Number(10)}">
-            <!-- Queried city information -->
-            <div class="weather-wrap" v-if="typeof weather.main !='undefined'">
-                <div class="location-box">
+                    <!-- Current weather in queried city -->
 
-                    <p class="weather-location">Weather in {{weather.name}}, {{weather.sys.country}}</p><br>
-                    Date<br>
-                    {{weather.sys.sunriseConverted}}<i class='far fa-sun'></i><br>
-                    {{weather.sys.sunsetConverted}}<i class='fas fa-sun'></i><br>
-                    Time zone: {{weather.timezone}}<br>
-                    Coordinates: {{weather.coord.lat}}, {{weather.coord.lon}}<br>
-                    Population: {{weatherForecast.city.population}}<br><br>
+                    <div class="current-weather-box">
+                        <h1 class="weather-location">Current weather in {{weather.name}}, {{weather.sys.country}}:</h1><br><br>
+                         <p class="weather-type">{{weather.weather[0].description}}</p><br>
+                        <i class='fas fa-temperature-high'
+                            style='font-size:240%;color:black'></i>{{weather.main.temp}}°C&nbsp;&nbsp;
+                        {{weather.main.tempFahrenheit}}°F&nbsp;&nbsp; {{weather.main.tempKelvin}}°K
+
+                        <br>
+                        Feels like:&nbsp;&nbsp;{{weather.main.feels_like}}°C&nbsp;&nbsp;{{weather.main.feels_likeFahrenheit}}°F
+                        &nbsp;&nbsp;{{weather.main.feels_likeKelvin}}°K<br><br>
+                        <i class='fas fa-temperature-high'></i>high: {{weather.main.temp_max}}°C
+                        &nbsp;&nbsp; {{weather.main.temp_maxFahrenheit}}°F&nbsp;&nbsp; {{weather.main.temp_max}}°K<br><br>
+                        <i class='fas fa-temperature-low'></i>low: {{weather.main.temp_min}}°C
+                        &nbsp;&nbsp;{{weather.main.temp_minFahrenheit}}°F &nbsp;&nbsp;{{weather.main.temp_minKelvin}}°K<br><br>
+                        <i class='fas fa-wind'></i>{{weather.wind.speed}}<br>
+                        Wind direction: {{weather.wind.windDirection}}, in degrees: {{weather.wind.deg}}<br><br>
+
+                        Air pressure: {{weather.main.pressure}}<br>
+                        Humidity: {{weather.main.humidity}}<br>
+                        Visibility: {{weather.visibility}} meters<br>
+                        Percentage of cloud coverage: {{weather.clouds.all}}<br>
+                        <br><br>
+                    </div>
+
+                    <div class="location-box">
+
+                         <h1 class="weather-location">Some information about {{weather.name}}, {{weather.sys.country}}</h1><br><br>
+                        <p class="weather-type">Date: {{weather.date}}</p><br><br><br>
+                        <i class='far fa-sun'></i> {{weather.sys.sunriseConverted}}<br><br>
+                        <i class='fas fa-sun'></i> {{weather.sys.sunsetConverted}}<br><br>
+                        Time zone: {{weather.timezone}}<br><br>
+                        Coordinates: {{weather.coord.lat}}, {{weather.coord.lon}}<br><br>
+                        Population: {{weatherForecast.city.population}}<br><br>
+
+                    </div>
 
                 </div>
-
-                <!-- Current weather in queried city -->
-
-                <div class="current-weather-box">
-                    Current weather: {{weather.weather[0].description}}<br>
-                    <i class='fas fa-temperature-high' style='font-size:480%;color:black'></i>{{weather.main.temp}}°C
-                    {{weather.main.tempFahrenheit}}°F {{weather.main.tempKelvin}}°K
-
-                    <br>
-                    Feels like:{{weather.main.feels_like}}°C {{weather.main.feels_likeFahrenheit}}°F
-                    {{weather.main.feels_likeKelvin}}°K<br>
-                    high<i class='fas fa-temperature-high'></i>{{weather.main.temp_max}}°C
-                    {{weather.main.temp_maxFahrenheit}}°F {{weather.main.temp_max}}°K<br>
-                    low<i class='fas fa-temperature-low'></i>{{weather.main.temp_min}}°C
-                    {{weather.main.temp_minFahrenheit}}°F {{weather.main.temp_minKelvin}}°K<br>
-
-                    Air pressure:{{weather.main.pressure}}<br>
-                    Humidity:{{weather.main.humidity}}<br>
-                    Visibility:{{weather.visibility}} meters<br>
-
-                    <i class='fas fa-wind'></i>{{weather.wind.speed}}<br><br>
-                    Wind direction: {{weather.wind.windDirection}}, in degrees: {{weather.wind.deg}}<br>
-
-                    Percentage of cloud coverage: {{weather.clouds.all}}<br>
-                    <br><br>
-                </div>
-
 
                 <!-- Weather forecast in queried city (5 days) -->
 
@@ -256,18 +277,19 @@
                     <br><br>
                 </div>
 
-            </div>
-           
-        </main>
 
+                <canvas id="myChart"></canvas>
+            </main>
+
+        
     </div>
-    <canvas id="myChart"></canvas>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-<script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
-    <script src="weatherLogic.js"></script>
-    
 
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
+    <script src="weatherLogic.js"></script>
+
+
+
 
 </body>
 

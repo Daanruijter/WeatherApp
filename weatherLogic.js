@@ -11,7 +11,7 @@ const app = new Vue({
     el: '#app',
     data: {
         api_key: "fb2a017905db23f312a17b320e8c07d0",
-        query: '',
+        query: 'oslo',
         url_base: "https://api.openweathermap.org/data/2.5/",
         weather: {},
 
@@ -22,11 +22,11 @@ const app = new Vue({
 
     },
 
-    // created() {
+    created() {
 
-    //     this.fetchData(url)
+        this.fetchData(url)
 
-    // },
+    },
 
     methods: {
         consoleLogger() {
@@ -267,6 +267,13 @@ const app = new Vue({
         },
 
         dateBuilder() {
+         
+            let dateConstructorBase = this.convertUnixTimeStapToTime(this.weather.dt)
+            
+            console.log(dateConstructorBase)
+            this.weather.date = dateConstructorBase.dateNumber + " "+ dateConstructorBase.monthName + " " + dateConstructorBase.year
+            
+            
 
         },
         createChart() {
@@ -283,7 +290,7 @@ const app = new Vue({
                 if(timeCalculator(weatherData.list[i].dt).day === 4){   
                     console.log("4444")
                 temperature.push(weatherData.list[i].main.temp)
-                time.push(this.convertUnixTimeStapToTime(weatherData.list[i].dt).formattedTime)
+                time.push(this.convertUnixTimeStapToTime(weatherData.list[i].dt).date)
                 feelsLike.push(weatherData.list[i].main.feels_like)
 
             }
@@ -450,7 +457,7 @@ const app = new Vue({
             // this.datalogger()
             this.forecastedWeatherBuilder()
             this.createChart()
-
+                this.dateBuilder()
 
         },
 
