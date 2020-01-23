@@ -312,8 +312,9 @@
                 </div>
                 <div class="date-parent-flexer">
                 <div class = date-parent">
-                <div class="weather-selection-box" v-for="item in weatherForecast.dateArrayOnlyUniqueNumbers" v-on:click ="test">
+                <div class="weather-selection-box" v-for="item in weatherForecast.dateArrayOnlyUniqueNumbers" v-on:click ="getSelectedElement">
                     {{item}}
+                    
                     </div>
                 </div>
                 <div>

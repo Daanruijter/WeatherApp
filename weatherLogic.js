@@ -14,10 +14,11 @@ const app = new Vue({
                 query: 'oslo',
                 url_base: "https://api.openweathermap.org/data/2.5/",
                 weather: {},
-
+                
 
                 //Forecasted data//
                 weatherForecast: {},
+                dateClicked: ''
 
 
             },
@@ -265,8 +266,15 @@ const app = new Vue({
                     let celsiusRounded = Math.round((celsius) * 10) / 10
                     return celsiusRounded
                 },
-                test(){
-                    console.log("test")
+                getSelectedElement(e){
+                    console.log(e)
+                    let targettedDate = e.target.innerText
+                    console.log(targettedDate)
+
+                    //do createchart with this date//
+
+         
+       
                 },
 
                 dateBuilder() {
