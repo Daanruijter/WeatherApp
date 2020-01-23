@@ -265,6 +265,9 @@ const app = new Vue({
                     let celsiusRounded = Math.round((celsius) * 10) / 10
                     return celsiusRounded
                 },
+                test(){
+                    console.log("test")
+                },
 
                 dateBuilder() {
 
