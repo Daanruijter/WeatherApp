@@ -280,7 +280,93 @@ const app = new Vue({
        this.weatherForecast.saturdayTemperature = []
        this.weatherForecast.sundayTemperature = []
 
+            //main.feels-like//
+       this.weatherForecast.mondayFeelsLike = []
+       this.weatherForecast.tuesdayFeelsLike = []
+       this.weatherForecast.wednesdayFeelsLike = []
+       this.weatherForecast.thursdayFeelsLike = []
+       this.weatherForecast.fridayFeelsLike = []
+       this.weatherForecast.saturdayFeelsLike= []
+       this.weatherForecast.sundayFeelsLike = []
        
+       //main.temp_min//
+       this.weatherForecast.mondayTemperature = []
+       this.weatherForecast.tuesdayTemperature = []
+       this.weatherForecast.wednesdayTemperature = []
+       this.weatherForecast.thursdayTemperature = []
+       this.weatherForecast.fridayTemperature = []
+       this.weatherForecast.saturdayTemperature = []
+       this.weatherForecast.sundayTemperature = []
+
+       //main.temp_max/
+       this.weatherForecast.mondayTemperature = []
+       this.weatherForecast.tuesdayTemperature = []
+       this.weatherForecast.wednesdayTemperature = []
+       this.weatherForecast.thursdayTemperature = []
+       this.weatherForecast.fridayTemperature = []
+       this.weatherForecast.saturdayTemperature = []
+       this.weatherForecast.sundayTemperature = []
+       
+            //main.pressure//
+            this.weatherForecast.mondayTemperature = []
+            this.weatherForecast.tuesdayTemperature = []
+            this.weatherForecast.wednesdayTemperature = []
+            this.weatherForecast.thursdayTemperature = []
+            this.weatherForecast.fridayTemperature = []
+            this.weatherForecast.saturdayTemperature = []
+            this.weatherForecast.sundayTemperature = []
+
+            //main.humidity//
+            this.weatherForecast.mondayTemperature = []
+            this.weatherForecast.tuesdayTemperature = []
+            this.weatherForecast.wednesdayTemperature = []
+            this.weatherForecast.thursdayTemperature = []
+            this.weatherForecast.fridayTemperature = []
+            this.weatherForecast.saturdayTemperature = []
+            this.weatherForecast.sundayTemperature = []
+
+            //weather[0].description (clouds)
+            this.weatherForecast.mondayTemperature = []
+            this.weatherForecast.tuesdayTemperature = []
+            this.weatherForecast.wednesdayTemperature = []
+            this.weatherForecast.thursdayTemperature = []
+            this.weatherForecast.fridayTemperature = []
+            this.weatherForecast.saturdayTemperature = []
+            this.weatherForecast.sundayTemperature = []
+
+
+            //clouds.all coverage //
+            this.weatherForecast.mondayTemperature = []
+            this.weatherForecast.tuesdayTemperature = []
+            this.weatherForecast.wednesdayTemperature = []
+            this.weatherForecast.thursdayTemperature = []
+            this.weatherForecast.fridayTemperature = []
+            this.weatherForecast.saturdayTemperature = []
+            this.weatherForecast.sundayTemperature = []
+
+            // wind.speed
+            this.weatherForecast.mondayTemperature = []
+            this.weatherForecast.tuesdayTemperature = []
+            this.weatherForecast.wednesdayTemperature = []
+            this.weatherForecast.thursdayTemperature = []
+            this.weatherForecast.fridayTemperature = []
+            this.weatherForecast.saturdayTemperature = []
+            this.weatherForecast.sundayTemperature = []
+
+            // wind.deg
+            this.weatherForecast.mondayTemperature = []
+            this.weatherForecast.tuesdayTemperature = []
+            this.weatherForecast.wednesdayTemperature = []
+            this.weatherForecast.thursdayTemperature = []
+            this.weatherForecast.fridayTemperature = []
+            this.weatherForecast.saturdayTemperature = []
+            this.weatherForecast.sundayTemperature = []
+
+
+
+
+
+
 
 
 
@@ -300,6 +386,7 @@ const app = new Vue({
                 if (dayNumber === 1) {
                     console.log("it's the first day of the range")
                     this.weatherForecast.mondayTemperature.push(listItem[i].main.temp)
+                    this.weatherForecast.mondayFeelsLike.push(listItem[i].feels_like)
 
 
                 }
