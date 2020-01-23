@@ -166,6 +166,18 @@
         .forecast-weather-box {
             text-align: center;
         }
+
+        .test {
+            background-color:green;
+            width:25%;
+            margin:2%;
+
+
+        }
+        .container12 {
+            display: flex;
+            flex-wrap:wrap
+        }
     </style>
 
 
@@ -177,9 +189,10 @@
 
        
             <div class="search-box">
-                <input type="text" class="search-bar" placeholder="Check the weather in your city" v-model="query"
+                <input type="text" id ="inputField" class="search-bar" text="london" placeholder="Check the weather in your city" v-model="query"
                     @keypress="fetchWatcher">
             </div>
+            
             <main :class="{warm : typeof weather.main != 'undefined' && weather.main.temp > 25, cold : typeof weather.main != 'undefined' && Number(weather.main.temp) < Number(10)}">
             <!-- Queried city information -->
             <div class="weather-wrap" v-if="typeof weather.main !='undefined'">
@@ -240,15 +253,22 @@
                     Rain:
                     <br><br>
                 </div>
+                
             </div>
+            <div class ="container12">
+            <p class="test" v-for = "item in weatherForecast.tuesdayTemperature">
+                Forecast weather for ...date ...hour
+                temperature {{item}}<br>
+                sdsdlkj
 
-            <p v-for = "item in weatherForecast.monday">{{item}}</p>
+            </p><br>
+
+            </div>
         </main>
 
     </div>
 
     <script src="weatherLogic.js"></script>
-
 
 </body>
 

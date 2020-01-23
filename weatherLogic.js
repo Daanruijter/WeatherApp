@@ -14,6 +14,7 @@ const app = new Vue({
         query: '',
         url_base: "https://api.openweathermap.org/data/2.5/",
         weather: {},
+        
 
         //Forecasted data//
         weatherForecast: {},
@@ -271,14 +272,19 @@ const app = new Vue({
 
         forecastedWeatherBuilder() {
             
-            let monday = []
-            let tuesday = []
-            let wednesday = []
-            let thursday = []
-            let friday = []
-            let saturday = []
-            let sunday = []
+       this.weatherForecast.mondayTemperature = []
+       this.weatherForecast.tuesdayTemperature = []
+       this.weatherForecast.wednesdayTemperature = []
+       this.weatherForecast.thursdayTemperature = []
+       this.weatherForecast.fridayTemperature = []
+       this.weatherForecast.saturdayTemperature = []
+       this.weatherForecast.sundayTemperature = []
 
+       
+
+
+
+            
             for (i = 0; i < this.weatherForecast.list.length; i++) {
                 console.log(this.weatherForecast.list[i].main.temp_max)
                 let listItem = this.weatherForecast.list
@@ -293,70 +299,56 @@ const app = new Vue({
 
                 if (dayNumber === 1) {
                     console.log("it's the first day of the range")
-                    monday.push(listItem[i].main.temp)
+                    this.weatherForecast.mondayTemperature.push(listItem[i].main.temp)
 
 
                 }
                 if (dayNumber === 2) {
 
                     console.log("it's the second day of the range")
-                    tuesday.push(listItem[i].main.temp)
+                    this.weatherForecast.tuesdayTemperature.push(listItem[i].main.temp)
 
                 }
                 if (dayNumber === 3) {
 
                     console.log("it's the third day of the range")
-                    wednesday.push(listItem[i].main.temp)
+                    this.weatherForecast.wednesdayTemperature.push(listItem[i].main.temp)
 
                 }
                 if (dayNumber === 4) {
 
                     console.log("it's the fourth day of the range")
-                    thursday.push(listItem[i].main.temp)
+                    this.weatherForecast.thursdayTemperature.push(listItem[i].main.temp)
 
                 }
                 if (dayNumber === 5) {
 
                     console.log("it's the fifth day of the range")
-                    friday.push(listItem[i].main.temp)
+                    this.weatherForecast.fridayTemperature.push(listItem[i].main.temp)
 
                 }
                 if (dayNumber === 6) {
 
                     console.log("it's the sixth day of the range")
-                    saturday.push(listItem[i].main.temp)
+                    this.weatherForecast.saturdayTemperature.push(listItem[i].main.temp)
 
                 }
                 if (dayNumber === 0) {
 
                     console.log("it's the zeventh day of the range")
-                    sunday.push(listItem[i].main.temp)
+                    this.weatherForecast.sundayTemperature.push(listItem[i].main.temp)
 
                 }
               
-                this.weatherForecast.monday = monday
-                this.weatherForecast.tuesday = tuesday
-                this.weatherForecast.wednesday = wednesday
-                this.weatherForecast.thursday = thursday
-                this.weatherForecast.friday = friday
-                this.weatherForecast.saturday = saturday
-                this.weatherForecast.sunday = sunday
+
+          
 
             }
 
 
 
         },
-        // datalogger() {
-
-        //     for (i = 0; i < this.weatherForecast.list.length; i++) {
-        //         console.log("s")
-        //         console.log(this.weatherForecast.list[i].main.temp)
-        //         console.log(this.convertUnixTimeStapToTime(this.weatherForecast.list[i].dt).formattedTime)
-        //         console.log(this.weatherForecast.list[i].main.temp)
-        //     }
-
-        // },
+    
 
 
         // //Fetch the data from the Propublica website//
