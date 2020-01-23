@@ -14,7 +14,7 @@ const app = new Vue({
         query: '',
         url_base: "https://api.openweathermap.org/data/2.5/",
         weather: {},
-
+        
 
         //Forecasted data//
         weatherForecast: {},
@@ -269,120 +269,173 @@ const app = new Vue({
         dateBuilder() {
 
         },
-        createChart() {
-
-            let weatherData = this.weatherForecast
-            let timeCalculator = this.convertUnixTimeStapToTime
-            let temperature = []
-            let feelsLike = []
-            let time = []
-            
-            for (i = 0; i < this.weatherForecast.list.length; i++) {
-                console.log(weatherData.list[i].dt)
-                console.log(timeCalculator(weatherData.list[i].dt).day)
-                if(timeCalculator(weatherData.list[i].dt).day === 4){   
-                    console.log("4444")
-                temperature.push(weatherData.list[i].main.temp)
-                time.push(this.convertUnixTimeStapToTime(weatherData.list[i].dt).formattedTime)
-                feelsLike.push(weatherData.list[i].main.feels_like)
-
-            }
-            console.log(feelsLike)
-
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var chart = new Chart(ctx, {
-                // The type of chart we want to create
-                type: 'line',
-
-                // The data for our dataset
-                data: {
-                    
-                    labels: time,
-                    
-                    datasets: [{
-                        label: 'My First dataset',
-                        // backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(255, 99, 132)',
-                        data: temperature,
-                        
-                    }]
-                },
-
-                // Configuration options go here
-                options: {}
-            });
-        }
-        },
 
         forecastedWeatherBuilder() {
+            
+       this.weatherForecast.mondayTemperature = []
+       this.weatherForecast.tuesdayTemperature = []
+       this.weatherForecast.wednesdayTemperature = []
+       this.weatherForecast.thursdayTemperature = []
+       this.weatherForecast.fridayTemperature = []
+       this.weatherForecast.saturdayTemperature = []
+       this.weatherForecast.sundayTemperature = []
+
+            //main.feels-like//
+       this.weatherForecast.mondayFeelsLike = []
+       this.weatherForecast.tuesdayFeelsLike = []
+       this.weatherForecast.wednesdayFeelsLike = []
+       this.weatherForecast.thursdayFeelsLike = []
+       this.weatherForecast.fridayFeelsLike = []
+       this.weatherForecast.saturdayFeelsLike= []
+       this.weatherForecast.sundayFeelsLike = []
+       
+       //main.temp_min//
+       this.weatherForecast.mondayTemperature = []
+       this.weatherForecast.tuesdayTemperature = []
+       this.weatherForecast.wednesdayTemperature = []
+       this.weatherForecast.thursdayTemperature = []
+       this.weatherForecast.fridayTemperature = []
+       this.weatherForecast.saturdayTemperature = []
+       this.weatherForecast.sundayTemperature = []
+
+       //main.temp_max/
+       this.weatherForecast.mondayTemperature = []
+       this.weatherForecast.tuesdayTemperature = []
+       this.weatherForecast.wednesdayTemperature = []
+       this.weatherForecast.thursdayTemperature = []
+       this.weatherForecast.fridayTemperature = []
+       this.weatherForecast.saturdayTemperature = []
+       this.weatherForecast.sundayTemperature = []
+       
+            //main.pressure//
+            this.weatherForecast.mondayTemperature = []
+            this.weatherForecast.tuesdayTemperature = []
+            this.weatherForecast.wednesdayTemperature = []
+            this.weatherForecast.thursdayTemperature = []
+            this.weatherForecast.fridayTemperature = []
+            this.weatherForecast.saturdayTemperature = []
+            this.weatherForecast.sundayTemperature = []
+
+            //main.humidity//
+            this.weatherForecast.mondayTemperature = []
+            this.weatherForecast.tuesdayTemperature = []
+            this.weatherForecast.wednesdayTemperature = []
+            this.weatherForecast.thursdayTemperature = []
+            this.weatherForecast.fridayTemperature = []
+            this.weatherForecast.saturdayTemperature = []
+            this.weatherForecast.sundayTemperature = []
+
+            //weather[0].description (clouds)
+            this.weatherForecast.mondayTemperature = []
+            this.weatherForecast.tuesdayTemperature = []
+            this.weatherForecast.wednesdayTemperature = []
+            this.weatherForecast.thursdayTemperature = []
+            this.weatherForecast.fridayTemperature = []
+            this.weatherForecast.saturdayTemperature = []
+            this.weatherForecast.sundayTemperature = []
+
+
+            //clouds.all coverage //
+            this.weatherForecast.mondayTemperature = []
+            this.weatherForecast.tuesdayTemperature = []
+            this.weatherForecast.wednesdayTemperature = []
+            this.weatherForecast.thursdayTemperature = []
+            this.weatherForecast.fridayTemperature = []
+            this.weatherForecast.saturdayTemperature = []
+            this.weatherForecast.sundayTemperature = []
+
+            // wind.speed
+            this.weatherForecast.mondayTemperature = []
+            this.weatherForecast.tuesdayTemperature = []
+            this.weatherForecast.wednesdayTemperature = []
+            this.weatherForecast.thursdayTemperature = []
+            this.weatherForecast.fridayTemperature = []
+            this.weatherForecast.saturdayTemperature = []
+            this.weatherForecast.sundayTemperature = []
+
+            // wind.deg
+            this.weatherForecast.mondayTemperature = []
+            this.weatherForecast.tuesdayTemperature = []
+            this.weatherForecast.wednesdayTemperature = []
+            this.weatherForecast.thursdayTemperature = []
+            this.weatherForecast.fridayTemperature = []
+            this.weatherForecast.saturdayTemperature = []
+            this.weatherForecast.sundayTemperature = []
 
 
 
-            // for (i = 0; i < this.weatherForecast.list.length; i++) {
-            //     console.log(this.weatherForecast.list[i].main.temp_max)
-            //     let listItem = this.weatherForecast.list
-
-            //     let dayNumber = this.convertUnixTimeStapToTime(this.weatherForecast.list[i].dt).day
-
-            //     let firstDayOfTheSetNumber = this.convertUnixTimeStapToTime(this.weatherForecast.list[0].dt).day
-
-            //     console.log(dayNumber, firstDayOfTheSetNumber)
-
-
-
-            //     if (dayNumber === 1) {
-            //         console.log("it's the first day of the range")
-            //         this.weatherForecast.mondayTemperature.push(listItem[i].main.temp)
-
-
-
-            //     }
-            //     if (dayNumber === 2) {
-
-            //         console.log("it's the second day of the range")
-            //         this.weatherForecast.tuesdayTemperature.push(listItem[i].main.temp)
-
-            //     }
-            //     if (dayNumber === 3) {
-
-            //         console.log("it's the third day of the range")
-            //         this.weatherForecast.wednesdayTemperature.push(listItem[i].main.temp)
-
-            //     }
-            //     if (dayNumber === 4) {
-
-            //         console.log("it's the fourth day of the range")
-            //         this.weatherForecast.thursdayTemperature.push(listItem[i].main.temp)
-
-            //     }
-            //     if (dayNumber === 5) {
-
-            //         console.log("it's the fifth day of the range")
-            //         this.weatherForecast.fridayTemperature.push(listItem[i].main.temp)
-
-            //     }
-            //     if (dayNumber === 6) {
-
-            //         console.log("it's the sixth day of the range")
-            //         this.weatherForecast.saturdayTemperature.push(listItem[i].main.temp)
-
-            //     }
-            //     if (dayNumber === 0) {
-
-            //         console.log("it's the zeventh day of the range")
-            //         this.weatherForecast.sundayTemperature.push(listItem[i].main.temp)
-
-            //     }
 
 
 
 
-            // }
+
+
+            
+            for (i = 0; i < this.weatherForecast.list.length; i++) {
+                console.log(this.weatherForecast.list[i].main.temp_max)
+                let listItem = this.weatherForecast.list
+
+                let dayNumber = this.convertUnixTimeStapToTime(this.weatherForecast.list[i].dt).day
+
+                let firstDayOfTheSetNumber = this.convertUnixTimeStapToTime(this.weatherForecast.list[0].dt).day
+
+                console.log(dayNumber, firstDayOfTheSetNumber)
+
+               
+
+                if (dayNumber === 1) {
+                    console.log("it's the first day of the range")
+                    this.weatherForecast.mondayTemperature.push(listItem[i].main.temp)
+                    this.weatherForecast.mondayFeelsLike.push(listItem[i].feels_like)
+
+
+                }
+                if (dayNumber === 2) {
+
+                    console.log("it's the second day of the range")
+                    this.weatherForecast.tuesdayTemperature.push(listItem[i].main.temp)
+
+                }
+                if (dayNumber === 3) {
+
+                    console.log("it's the third day of the range")
+                    this.weatherForecast.wednesdayTemperature.push(listItem[i].main.temp)
+
+                }
+                if (dayNumber === 4) {
+
+                    console.log("it's the fourth day of the range")
+                    this.weatherForecast.thursdayTemperature.push(listItem[i].main.temp)
+
+                }
+                if (dayNumber === 5) {
+
+                    console.log("it's the fifth day of the range")
+                    this.weatherForecast.fridayTemperature.push(listItem[i].main.temp)
+
+                }
+                if (dayNumber === 6) {
+
+                    console.log("it's the sixth day of the range")
+                    this.weatherForecast.saturdayTemperature.push(listItem[i].main.temp)
+
+                }
+                if (dayNumber === 0) {
+
+                    console.log("it's the zeventh day of the range")
+                    this.weatherForecast.sundayTemperature.push(listItem[i].main.temp)
+
+                }
+              
+
+          
+
+            }
 
 
 
         },
-
+    
 
 
         // //Fetch the data from the Propublica website//
@@ -433,7 +486,7 @@ const app = new Vue({
 
             // this.datalogger()
             this.forecastedWeatherBuilder()
-            this.createChart()
+
 
 
         },
