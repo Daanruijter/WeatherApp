@@ -267,143 +267,107 @@ const app = new Vue({
         },
 
         dateBuilder() {
-         
+
             let dateConstructorBase = this.convertUnixTimeStapToTime(this.weather.dt)
-            
+
             console.log(dateConstructorBase)
-            this.weather.date = dateConstructorBase.dateNumber + " "+ dateConstructorBase.monthName + " " + dateConstructorBase.year
-            
-            
+            this.weather.date = dateConstructorBase.dateNumber + " " + dateConstructorBase.monthName + " " + dateConstructorBase.year
+
+
 
         },
         createChart() {
+
+
+
+
 
             let weatherData = this.weatherForecast
             let timeCalculator = this.convertUnixTimeStapToTime
             let temperature = []
             let feelsLike = []
+            let forecastDate =[]
             let time = []
-            
+
             for (i = 0; i < this.weatherForecast.list.length; i++) {
                 console.log(weatherData.list[i].dt)
                 console.log(timeCalculator(weatherData.list[i].dt).day)
-                if(timeCalculator(weatherData.list[i].dt).day === 4){   
+                if (timeCalculator(weatherData.list[i].dt).day === 4) {
                     console.log("4444")
-                temperature.push(weatherData.list[i].main.temp)
-                time.push(this.convertUnixTimeStapToTime(weatherData.list[i].dt).date)
-                feelsLike.push(weatherData.list[i].main.feels_like)
-
-            }
-            console.log(feelsLike)
-
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var chart = new Chart(ctx, {
-                // The type of chart we want to create
-                type: 'line',
-                
-
-                // The data for our dataset
-                data: {
+                    temperature.push(weatherData.list[i].main.temp)
+                    time.push(this.convertUnixTimeStapToTime(weatherData.list[i].dt).dateNumber + "-" +
+                        this.convertUnixTimeStapToTime(weatherData.list[i].dt).monthNumber + "-" +
+                        this.convertUnixTimeStapToTime(weatherData.list[i].dt).year + ", " +
+                        this.convertUnixTimeStapToTime(weatherData.list[i].dt).formattedTime
+                    )
+                    forecastDate.push(this.convertUnixTimeStapToTime(weatherData.list[i].dt).dateNumber + "-" +
+                    this.convertUnixTimeStapToTime(weatherData.list[i].dt).monthNumber + "-" +
+                    this.convertUnixTimeStapToTime(weatherData.list[i].dt).year 
                     
-                    labels: time,
-                    
-                    datasets: [{
-                        fontSize: 40,
-                        label: 'My First dataset',
-                        // backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(255, 99, 132)',
-                        data: temperature,
-                        
-                    }, {
-                        label: 'My First dataset',
-                        // backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(255, 99, 132)',
-                        data: feelsLike,
-                        
-                    }]
-                },
+                )
+                    feelsLike.push(weatherData.list[i].main.feels_like)
 
-                // Configuration options go here
-                options: {
-                    scales: {
-                       xAxes: [{
-                               ticks: {
-                                fontSize: 40
-                               }
-                              }]
+                }
+                console.log(feelsLike)
+
+
+
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var chart = new Chart(ctx, {
+                    // The type of chart we want to create
+                    type: 'line',
+
+
+                    // The data for our dataset
+                    data: {
+
+                        labels: time,
+
+                        datasets: [{
+
+                            label: 'Temperature during the day',
+                            // backgroundColor: 'rgb(255, 99, 132)',
+                            borderColor: 'rgb(255, 99, 132)',
+                            data: temperature,
+
+                        }, {
+                            label: 'Temperature feels like',
+                            // backgroundColor: 'rgb(255, 99, 132)',
+                            borderColor: 'rgb(255,255,0)',
+                            data: feelsLike,
+
+                        }]
+                    },
+
+                    // Configuration options go here
+                    options: {
+                        scales: {
+                            xAxes: [{
+                                ticks: {
+                                    fontSize: 20,
+                                    fontColor: 'white',
+                                }
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    fontSize: 20,
+                                    fontColor: 'white',
+                                }
+                            }],
+
+                        },
+                        legend: {
+                            labels: {
+                                // This more specific font property overrides the global property
+                                fontColor: 'white',
+                                fontSize: 20,
                             }
-                         }
-            });
-        }
-        },
+                        }
 
-        forecastedWeatherBuilder() {
-
-
-
-            // for (i = 0; i < this.weatherForecast.list.length; i++) {
-            //     console.log(this.weatherForecast.list[i].main.temp_max)
-            //     let listItem = this.weatherForecast.list
-
-            //     let dayNumber = this.convertUnixTimeStapToTime(this.weatherForecast.list[i].dt).day
-
-            //     let firstDayOfTheSetNumber = this.convertUnixTimeStapToTime(this.weatherForecast.list[0].dt).day
-
-            //     console.log(dayNumber, firstDayOfTheSetNumber)
-
-
-
-            //     if (dayNumber === 1) {
-            //         console.log("it's the first day of the range")
-            //         this.weatherForecast.mondayTemperature.push(listItem[i].main.temp)
-
-
-
-            //     }
-            //     if (dayNumber === 2) {
-
-            //         console.log("it's the second day of the range")
-            //         this.weatherForecast.tuesdayTemperature.push(listItem[i].main.temp)
-
-            //     }
-            //     if (dayNumber === 3) {
-
-            //         console.log("it's the third day of the range")
-            //         this.weatherForecast.wednesdayTemperature.push(listItem[i].main.temp)
-
-            //     }
-            //     if (dayNumber === 4) {
-
-            //         console.log("it's the fourth day of the range")
-            //         this.weatherForecast.thursdayTemperature.push(listItem[i].main.temp)
-
-            //     }
-            //     if (dayNumber === 5) {
-
-            //         console.log("it's the fifth day of the range")
-            //         this.weatherForecast.fridayTemperature.push(listItem[i].main.temp)
-
-            //     }
-            //     if (dayNumber === 6) {
-
-            //         console.log("it's the sixth day of the range")
-            //         this.weatherForecast.saturdayTemperature.push(listItem[i].main.temp)
-
-            //     }
-            //     if (dayNumber === 0) {
-
-            //         console.log("it's the zeventh day of the range")
-            //         this.weatherForecast.sundayTemperature.push(listItem[i].main.temp)
-
-            //     }
-
-
-
-
-            // }
-
-
-
+                    }
+                });
+            }
+            this.weatherForecast.forecastDate= forecastDate[0]
         },
 
 
@@ -455,9 +419,9 @@ const app = new Vue({
             this.weather.main.temp_min = this.temperatureRounder(this.weather.main.temp_min)
 
             // this.datalogger()
-            this.forecastedWeatherBuilder()
+
             this.createChart()
-                this.dateBuilder()
+            this.dateBuilder()
 
         },
 

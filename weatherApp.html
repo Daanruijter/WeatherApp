@@ -184,13 +184,18 @@
         /* FORECAST WEATHER PART */
         .forecast-weather-box {
             text-align: center;
+            margin-top:5%;
+            margin-bottom:10%;
         }
 
+        .forecast-title {
+            color: yellow;
+        }
 
         #myChart {
-            width: 70% !important;
+            width: 100% !important;
             height: 50% !important;
-            font-size: 350% !important;
+            font-size: 150% !important;
 
         }
     </style>
@@ -257,28 +262,11 @@
                 <!-- Weather forecast in queried city (5 days) -->
 
                 <div class="forecast-weather-box">
-                    Current weather<br>
-                    Cloudy: <br>
-
-                    Current temperature: 5 degrees Celcius (convert to Fahrenheit, convert to Kelvin)<br>
-                    Feels like:<br>
-                    Maximum temperature today:<br>
-                    Minimum temperature today:<br>
-
-                    Air pressure:<br>
-                    Humidity:
-
-                    Wind speed:<br>
-                    Wind direction:<br>
-
-                    Cloudiness:
-
-                    Rain:
-                    <br><br>
+               <h1 class = "forecast-title">Forecast weather for {{weatherForecast.forecastDate}}</h1><br>
+                    <canvas id="myChart"></canvas>
                 </div>
 
 
-                <canvas id="myChart"></canvas>
             </main>
 
         
