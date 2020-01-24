@@ -189,7 +189,7 @@
             margin-bottom: 10%;
             width: 85%;
             height: 85%;
-            
+
 
 
         }
@@ -199,19 +199,19 @@
         }
 
         .date-parent {
-            display:flex;
-            
-            
-           
-            
+            display: flex;
+
+
+
+
         }
 
         .date-parent-flexer {
-            display:flex;
-            
+            display: flex;
+
             align-self: center;
-           
-            
+
+
         }
 
         .forecast-title {
@@ -229,14 +229,70 @@
             display: flex;
             /* background-color: darkorange; */
             margin-top: 20%;
-            color:yellow;
-            padding:1%;
+            color: yellow;
+            padding: 1%;
             flex-direction: row;
-            flex-wrap: wrap ;
+            flex-wrap: wrap;
             font-size: 140%;
-            
 
 
+
+
+
+        }
+
+        /* weathertype box*/
+        .weather-type-box-forecast {
+            padding:1%;
+            font-weight: bold;
+            background-color: purple;
+            width: 80%;
+            margin: 0 auto;
+            border-radius: 10%;
+            margin-bottom: 10%;
+        }
+
+
+        .weather-time-flexer {
+            display: flex;
+            justify-content: flex-start;
+
+
+        }
+
+        .weather-time-forecast {
+
+            color: yellow;
+            font-size: 150%;
+            width: 20%
+        }
+
+        .weather-time-forecast-title {
+
+            color: yellow;
+            font-size: 150%;
+            padding-right: 2%;
+
+
+        }
+
+        .weather-type-flexer {
+            display: flex;
+            justify-content: flex-start
+        }
+
+        .weather-type-forecast {
+
+            color: white;
+            font-size: 150%;
+            width: 20%
+        }
+
+        .weather-type-forecast-title {
+
+            color: white;
+            font-size: 150%;
+            padding-right: 2%;
 
 
         }
@@ -312,19 +368,38 @@
                     <canvas id="myChart"></canvas>
                 </div>
                 <div class="date-parent-flexer">
-                <div class = date-parent">
-                <div class="weather-selection-box" v-for="item in weatherForecast.dateArrayOnlyUniqueNumbers" v-on:click ="getSelectedElementDayNumber">
-                    {{item}}
-                   
-                   
-                    
+                    <div class=date-parent">
+                        <div class="weather-selection-box" v-for="item in weatherForecast.dateArrayOnlyUniqueNumbers"
+                            v-on:click="getSelectedElementDayNumber">
+                            {{item}}
+
+
+
+                        </div>
                     </div>
-                </div>
-                <div>
-            </div>
+                    <div>
+                    </div>
+
 
         </main>
+        <div class="weather-type-box-forecast">
+            <div class="weather-time-flexer">
+                <p class="weather-time-forecast-title">Weather type for:{{date}}</p>
+                <div class="weather-time-forecast" v-for="item in weatherForecast.weatherTime">
+                    {{item }}
+                </div>
+            </div>
+            <div class="weather-type-flexer">
 
+                <p class="weather-type-forecast-title">Weather type for:{{date}}</p>
+                <div class="weather-type-forecast" v-for="item in weatherForecast.weatherType">
+                    {{item}}
+                </div>
+
+            </div>
+
+
+        </div>
 
     </div>
 

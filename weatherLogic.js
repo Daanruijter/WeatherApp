@@ -28,7 +28,7 @@ const app = new Vue({
     created() {
 
         this.fetchData(url)
-      
+
 
     },
 
@@ -271,9 +271,9 @@ const app = new Vue({
         },
         getSelectedElementDayNumber(e) {
             console.log(e)
-            
+
             let targettedDate = e.target.innerText
-            
+
             console.log(targettedDate)
 
             let dateWithMonthInLetters = ''
@@ -347,8 +347,8 @@ const app = new Vue({
             this.createChart(dayOfTheWeekNumber)
             console.log(targettedDateString)
             console.log(this.weatherForecast + "after click")
-            this.date =targettedDate
-         
+            this.date = targettedDate
+
 
 
 
@@ -359,7 +359,7 @@ const app = new Vue({
             //show current date on the screen for  the current weather data//
             let dateConstructorBase = this.convertUnixTimeStapToTime(this.weather.dt)
 
-       
+
             this.weather.date = dateConstructorBase.dateNumber + " " + dateConstructorBase.monthName + " " + dateConstructorBase.year
 
             //create an array of all the data in the forecast data object//
@@ -376,7 +376,7 @@ const app = new Vue({
             }
 
 
-            
+
             //Get unique week of the day numbers//
             let dayOfTheWeekNumberArrayOnlyUniqueNumbers = []
             let dateArrayOnlyUniqueNumbers = []
@@ -389,7 +389,7 @@ const app = new Vue({
 
                 }
 
-            
+
 
                 this.weatherForecast.dateArrayOnlyUniqueNumbersFirst = dayOfTheWeekNumberArray[0]
 
@@ -418,6 +418,13 @@ const app = new Vue({
             //this needs to be populated with the data based on the day where one clicks on//
             let temperature = []
             let feelsLike = []
+            let pressure = []
+            let humidity = []
+            let weatherType = []
+            let cloudCoverage = []
+            let windSpeed = []
+            let windSpeedDegrees = []
+
 
 
             for (i = 0; i < this.weatherForecast.list.length; i++) {
@@ -429,7 +436,7 @@ const app = new Vue({
                     time.push(
                         this.convertUnixTimeStapToTime(weatherData.list[i].dt).formattedTime
                     )
-                   
+
                     forecastDate.push(this.convertUnixTimeStapToTime(weatherData.list[i].dt).dateNumber + "-" +
                         this.convertUnixTimeStapToTime(weatherData.list[i].dt).monthNumber + "-" +
                         this.convertUnixTimeStapToTime(weatherData.list[i].dt).year
@@ -437,9 +444,25 @@ const app = new Vue({
                     )
                     feelsLike.push(weatherData.list[i].main.feels_like)
 
-                }
+                    pressure.push(weatherData.list[i].main.pressure)
+                    humidity.push(weatherData.list[i].main.humidity)
+                    weatherType.push(weatherData.list[i].weather[0].description)
+                    cloudCoverage.push(weatherData.list[i].clouds.all)
+                    windSpeed.push(weatherData.list[i].wind.speed)
+                    windSpeedDegrees.push(weatherData.list[i].wind.deg)
 
 
+                }}
+
+                this.weatherForecast.weatherType = weatherType
+                this.weatherForecast.weatherTime = time
+                console.log(time)
+                console.log(pressure)
+                console.log(humidity)
+                console.log(weatherType)
+                console.log(cloudCoverage)
+                console.log(windSpeed)
+                console.log(windSpeedDegrees)
 
 
                 var ctx = document.getElementById('myChart').getContext('2d');
@@ -469,6 +492,7 @@ const app = new Vue({
                         }]
                     },
 
+
                     // Configuration options go here
                     options: {
                         scales: {
@@ -476,10 +500,12 @@ const app = new Vue({
                                 ticks: {
                                     fontSize: 15,
                                     fontColor: 'white',
+
                                 }
                             }],
                             yAxes: [{
                                 ticks: {
+
                                     fontSize: 30,
                                     fontColor: 'white',
                                 }
@@ -492,14 +518,15 @@ const app = new Vue({
                                 fontColor: 'white',
                                 fontSize: 30,
                             }
-                        }
+                        },
+
 
                     }
                 });
                 console.log(forecastDate)
-            }
-         
-                    
+            
+
+
 
 
         },
@@ -552,17 +579,17 @@ const app = new Vue({
             this.weather.main.temp_max = this.temperatureRounder(this.weather.main.temp_max)
             this.weather.main.temp_min = this.temperatureRounder(this.weather.main.temp_min)
 
-            
-            // console.log(this.weatherForecast.)
-         
-            this.dateBuilder()
-            
-            
-        this.createChart(this.weatherForecast.dateArrayOnlyUniqueNumbersFirst)
-        this.date = this.weatherForecast.firstDateOfTheDataSet
-        console.log(this.weatherForecast + "after fetched data")
 
-           
+            // console.log(this.weatherForecast.)
+
+            this.dateBuilder()
+
+
+            this.createChart(this.weatherForecast.dateArrayOnlyUniqueNumbersFirst)
+            this.date = this.weatherForecast.firstDateOfTheDataSet
+            console.log(this.weatherForecast + "after fetched data")
+
+
 
         },
 
