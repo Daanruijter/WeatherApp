@@ -432,15 +432,18 @@ const app = new Vue({
                 dateWithMonthInLettersOtherData = dayOfTheWeekDateOtherData.replace("-12-", "-december-")
 
             }
-
+            console.log(dateWithMonthInLettersOtherData)
             console.log(dayOfTheWeekDateOtherData)
             console.log(targetElementOtherData)
+            dateWithMonthInLettersOtherData = "" + dateWithMonthInLettersOtherData + ""
+            console.log(dateWithMonthInLettersOtherData)
 
 
              //do createchart with this date//
-             let unixtime = Date.parse(dayOfTheWeekDateOtherData) / 1000
+             let unixtime = Date.parse(dateWithMonthInLettersOtherData) / 1000
             console.log(unixtime)
              let dayOfTheWeekNumberOtherData = this.convertUnixTimeStapToTime(unixtime).day
+             
             console.log(dayOfTheWeekNumberOtherData)
  
 
