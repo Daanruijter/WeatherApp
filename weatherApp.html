@@ -308,13 +308,15 @@
             <!-- Weather forecast in queried city (5 days) -->
             <div class="forecast-container">
                 <div class="forecast-weather-box">
-                    <h1 class="forecast-title">Forecast weather for {{weatherForecast.forecastDate}}</h1><br>
+                    <h1 class="forecast-title">Forecast weather for {{date}}</h1><br>
                     <canvas id="myChart"></canvas>
                 </div>
                 <div class="date-parent-flexer">
                 <div class = date-parent">
                 <div class="weather-selection-box" v-for="item in weatherForecast.dateArrayOnlyUniqueNumbers" v-on:click ="getSelectedElementDayNumber">
                     {{item}}
+                   
+                   
                     
                     </div>
                 </div>
