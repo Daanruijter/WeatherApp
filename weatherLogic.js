@@ -15,13 +15,14 @@ const app = new Vue({
         url_base: "https://api.openweathermap.org/data/2.5/",
         weather: {},
         date: '',
+        currentDate: '',
 
         //Forecasted data//
         weatherForecast: {
             forecastDate: 'test'
         },
         dateClicked: '',
-        isChecked:["air-pressure", "humidity", "cloud-coverage", "wind-direction", "wind-speed"],
+        isChecked: ["air-pressure", "humidity", "cloud-coverage", "wind-direction", "wind-speed"],
 
 
     },
@@ -270,11 +271,14 @@ const app = new Vue({
             let celsiusRounded = Math.round((celsius) * 10) / 10
             return celsiusRounded
         },
+
+
+
         getSelectedElementDayNumber(e) {
             console.log(e)
 
             let targettedDate = e.target.innerText
-            let t=e
+            let t = e
             console.log(targettedDate)
 
             let dateWithMonthInLetters = ''
@@ -342,18 +346,321 @@ const app = new Vue({
             }
 
             //do createchart with this date//
-            var unixtime = Date.parse(dateWithMonthInLetters) / 1000
+            let unixtime = Date.parse(dateWithMonthInLetters) / 1000
 
             let dayOfTheWeekNumber = this.convertUnixTimeStapToTime(unixtime).day
             this.createChart(dayOfTheWeekNumber, t)
             console.log(targettedDateString)
             console.log(this.weatherForecast + "after click")
             this.date = targettedDate
+            this.currentDate = targettedDate
 
 
 
 
         },
+        getSelectedElementDayNumberFromData(e) {
+            let targetElementOtherData = e
+            let dayOfTheWeekDateOtherData = this.currentDate
+            console.log(this.currentDate)
+            this.createChartForOtherData(dayOfTheWeekDateOtherData, targetElementOtherData)
+        },
+        createChartForOtherData(dayOfTheWeekDateOtherData, targetElementOtherData) {
+
+
+            let dateWithMonthInLettersOtherData = ''
+            
+            
+
+            if (dayOfTheWeekDateOtherData.includes("-1-")) {
+
+                dateWithMonthInLettersOtherData = dayOfTheWeekDateOtherData.replace("-1-", "-january-")
+
+            }
+            if (dayOfTheWeekDateOtherData.includes("-2-")) {
+
+                dateWithMonthInLettersOtherData = dayOfTheWeekDateOtherData.replace("-2-", "-february-")
+
+            }
+            if (dayOfTheWeekDateOtherData.includes("-3-")) {
+
+                dateWithMonthInLettersOtherData = dayOfTheWeekDateOtherData.replace("-3-", "-march-")
+
+            }
+            if (dayOfTheWeekDateOtherData.includes("-4-")) {
+
+                dateWithMonthInLettersOtherData = dayOfTheWeekDateOtherData.replace("-4-", "-april-")
+
+            }
+            if (dayOfTheWeekDateOtherData.includes("-5-")) {
+
+                dateWithMonthInLettersOtherData = dayOfTheWeekDateOtherData.replace("-5-", "-may-")
+
+            }
+            if (dayOfTheWeekDateOtherData.includes("-6-")) {
+
+                dateWithMonthInLettersOtherData = dayOfTheWeekDateOtherData.replace("-6-", "-june-")
+
+            }
+            if (dayOfTheWeekDateOtherData.includes("-7-")) {
+
+                dateWithMonthInLettersOtherData = dayOfTheWeekDateOtherData.replace("-7-", "-july-")
+
+            }
+            if (dayOfTheWeekDateOtherData.includes("-8-")) {
+
+                dateWithMonthInLettersOtherData = dayOfTheWeekDateOtherData.replace("-8-", "-august-")
+
+            }
+            if (dayOfTheWeekDateOtherData.includes("-9-")) {
+
+                dateWithMonthInLettersOtherData = dayOfTheWeekDateOtherData.replace("-9-", "-september-")
+
+            }
+            if (dayOfTheWeekDateOtherData.includes("-10-")) {
+
+                dateWithMonthInLettersOtherData = dayOfTheWeekDateOtherData.replace("-10-", "-oktober-")
+
+            }
+            if (dayOfTheWeekDateOtherData.includes("-11-")) {
+
+                dateWithMonthInLettersOtherData = dayOfTheWeekDateOtherData.replace("-11-", "-november-")
+
+            }
+            if (dayOfTheWeekDateOtherData.includes("-12-")) {
+
+                dateWithMonthInLettersOtherData = dayOfTheWeekDateOtherData.replace("-12-", "-december-")
+
+            }
+
+            console.log(dayOfTheWeekDateOtherData)
+            console.log(targetElementOtherData)
+
+
+             //do createchart with this date//
+             let unixtime = Date.parse(dayOfTheWeekDateOtherData) / 1000
+            console.log(unixtime)
+             let dayOfTheWeekNumberOtherData = this.convertUnixTimeStapToTime(unixtime).day
+            console.log(dayOfTheWeekNumberOtherData)
+ 
+
+            //always needed//
+            let weatherData = this.weatherForecast
+            let forecastDate = []
+            let time = []
+            let timeCalculator = this.convertUnixTimeStapToTime
+
+            //this needs to be the date where one clicks on//
+            // let firstDayOfTheDataset = this.convertUnixTimeStapToTime(this.weatherForecast.list[0].dt).day
+
+            //this needs to be populated with the data based on the day where one clicks on//
+            let temperature = []
+            let feelsLike = []
+            let pressure = []
+            let humidity = []
+            let weatherType = []
+            let cloudCoverage = []
+            let windSpeed = []
+            let windSpeedDegrees = []
+
+
+
+            for (i = 0; i < this.weatherForecast.list.length; i++) {
+
+                //firstDayOfTheDataSet needs to be the date where one clicks on//
+                if (timeCalculator(weatherData.list[i].dt).day === dayOfTheWeekNumberOtherData) {
+
+                    temperature.push(weatherData.list[i].main.temp)
+                    time.push(
+                        this.convertUnixTimeStapToTime(weatherData.list[i].dt).formattedTime
+                    )
+
+                    forecastDate.push(this.convertUnixTimeStapToTime(weatherData.list[i].dt).dateNumber + "-" +
+                        this.convertUnixTimeStapToTime(weatherData.list[i].dt).monthNumber + "-" +
+                        this.convertUnixTimeStapToTime(weatherData.list[i].dt).year
+
+                    )
+                    feelsLike.push(weatherData.list[i].main.feels_like)
+
+                    pressure.push(weatherData.list[i].main.pressure)
+                    humidity.push(weatherData.list[i].main.humidity)
+                    weatherType.push(weatherData.list[i].weather[0].description)
+                    cloudCoverage.push(weatherData.list[i].clouds.all)
+                    windSpeed.push(weatherData.list[i].wind.speed)
+                    windSpeedDegrees.push(weatherData.list[i].wind.deg)
+
+
+                }
+            }
+
+            this.weatherForecast.weatherType = weatherType
+            this.weatherForecast.weatherTime = time
+            console.log(time)
+            console.log(pressure)
+            console.log(humidity)
+            console.log(weatherType)
+            console.log(cloudCoverage)
+            console.log(windSpeed)
+            console.log(windSpeedDegrees)
+
+
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+
+
+                // The data for our dataset
+                data: {
+
+                    labels: time,
+
+                    datasets: [{
+
+                        label: 'Temperature during the day',
+                        // backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: temperature,
+
+                    }, {
+                        label: 'Temperature feels like',
+                        // backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255,255,0)',
+                        data: feelsLike,
+
+                    }]
+                },
+
+
+                // Configuration options go here
+                options: {
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                fontSize: 15,
+                                fontColor: 'white',
+
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+
+                                fontSize: 30,
+                                fontColor: 'white',
+                            }
+                        }],
+
+                    },
+                    legend: {
+                        labels: {
+                            // This more specific font property overrides the global property
+                            fontColor: 'white',
+                            fontSize: 30,
+                        }
+                    },
+
+
+                }
+            });
+
+
+            // //creating other charts under conditions//
+            // console.log(this.currentDate)
+            // console.log(e)
+            // let targettedElement = ''
+            // console.log(forecastDate)
+            // if (e !== undefined) {
+            //     targettedElement = e.target.value
+            // }
+            // console.log(targettedElement)
+
+
+            // let targettedElementString = JSON.stringify(targettedElement)
+            // console.log(targettedElementString)
+
+
+            // if (targettedElement == "air-pressure") {
+            //     dayOfTheWeekNumber =6
+            //     ctx = document.getElementById('myChart').getContext('2d');
+            //     ctx.innerText=""
+            // var chart = new Chart(ctx, {
+            //     // The type of chart we want to create
+            //     type: 'line',
+
+
+            //     // The data for our dataset
+            //     data: {
+
+            //         labels: time,
+
+            //         datasets: [{
+
+            //             label: 'Air-pressure during the day',
+            //             // backgroundColor: 'rgb(255, 99, 132)',
+            //             borderColor: 'rgb(255, 99, 132)',
+            //             data: pressure,
+
+            //         }, ]
+            //     },
+
+
+            //     // Configuration options go here
+            //     options: {
+            //         scales: {
+            //             xAxes: [{
+            //                 ticks: {
+            //                     fontSize: 15,
+            //                     fontColor: 'white',
+
+            //                 }
+            //             }],
+            //             yAxes: [{
+            //                 ticks: {
+
+            //                     fontSize: 30,
+            //                     fontColor: 'white',
+            //                 }
+            //             }],
+
+            //         },
+            //         legend: {
+            //             labels: {
+            //                 // This more specific font property overrides the global property
+            //                 fontColor: 'white',
+            //                 fontSize: 30,
+            //             }
+            //         },
+
+
+            //     }
+            // });
+
+            // }
+            // if (targettedElement == "humidity") {
+
+            // }
+            // if (targettedElement == "cloud-coverage") {
+
+            // }
+            // if (targettedElement == "wind-direction") {
+
+            // }
+            // if (targettedElement == "wind-speed") {
+
+            // }
+
+
+            // // if(e!==undefined && !targettedElementString.includes("weather-selection-box")){
+            // //     console.log(targettedElementString)
+            // //     // if (targettedElementString === 
+            // // }
+
+
+
+
+
+        },
+
 
         dateBuilder() {
 
@@ -405,7 +712,7 @@ const app = new Vue({
         },
         createChart(dayOfTheWeekNumber, e) {
 
-            
+            console.log(dayOfTheWeekNumber)
 
             //always needed//
             let weatherData = this.weatherForecast
@@ -453,20 +760,99 @@ const app = new Vue({
                     windSpeedDegrees.push(weatherData.list[i].wind.deg)
 
 
-                }}
+                }
+            }
 
-                this.weatherForecast.weatherType = weatherType
-                this.weatherForecast.weatherTime = time
-                console.log(time)
-                console.log(pressure)
-                console.log(humidity)
-                console.log(weatherType)
-                console.log(cloudCoverage)
-                console.log(windSpeed)
-                console.log(windSpeedDegrees)
+            this.weatherForecast.weatherType = weatherType
+            this.weatherForecast.weatherTime = time
+            console.log(time)
+            console.log(pressure)
+            console.log(humidity)
+            console.log(weatherType)
+            console.log(cloudCoverage)
+            console.log(windSpeed)
+            console.log(windSpeedDegrees)
 
 
-                var ctx = document.getElementById('myChart').getContext('2d');
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+
+
+                // The data for our dataset
+                data: {
+
+                    labels: time,
+
+                    datasets: [{
+
+                        label: 'Temperature during the day',
+                        // backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: temperature,
+
+                    }, {
+                        label: 'Temperature feels like',
+                        // backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255,255,0)',
+                        data: feelsLike,
+
+                    }]
+                },
+
+
+                // Configuration options go here
+                options: {
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                fontSize: 15,
+                                fontColor: 'white',
+
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+
+                                fontSize: 30,
+                                fontColor: 'white',
+                            }
+                        }],
+
+                    },
+                    legend: {
+                        labels: {
+                            // This more specific font property overrides the global property
+                            fontColor: 'white',
+                            fontSize: 30,
+                        }
+                    },
+
+
+                }
+            });
+
+
+            //creating other charts under conditions//
+            console.log(this.currentDate)
+            console.log(e)
+            let targettedElement = ''
+            console.log(forecastDate)
+            if (e !== undefined) {
+                targettedElement = e.target.value
+            }
+            console.log(targettedElement)
+
+
+            let targettedElementString = JSON.stringify(targettedElement)
+            console.log(targettedElementString)
+
+
+            if (targettedElement == "air-pressure") {
+                dayOfTheWeekNumber = 6
+                ctx = document.getElementById('myChart').getContext('2d');
+                ctx.innerText = ""
                 var chart = new Chart(ctx, {
                     // The type of chart we want to create
                     type: 'line',
@@ -479,18 +865,12 @@ const app = new Vue({
 
                         datasets: [{
 
-                            label: 'Temperature during the day',
+                            label: 'Air-pressure during the day',
                             // backgroundColor: 'rgb(255, 99, 132)',
                             borderColor: 'rgb(255, 99, 132)',
-                            data: temperature,
+                            data: pressure,
 
-                        }, {
-                            label: 'Temperature feels like',
-                            // backgroundColor: 'rgb(255, 99, 132)',
-                            borderColor: 'rgb(255,255,0)',
-                            data: feelsLike,
-
-                        }]
+                        }, ]
                     },
 
 
@@ -525,27 +905,33 @@ const app = new Vue({
                     }
                 });
 
-                let targettedElement=''
-                console.log(forecastDate)
-                if(e!==undefined){
-                targettedElement = e.target}
-                
-                
-                let targettedElementString = JSON.stringify(targettedElement)
-                console.log(targettedElementString)
-                if(e!==undefined && !targettedElementString.includes("weather-selection-box")){
-                    console.log(e.target)
-                }
+            }
+            if (targettedElement == "humidity") {
 
-                
+            }
+            if (targettedElement == "cloud-coverage") {
+
+            }
+            if (targettedElement == "wind-direction") {
+
+            }
+            if (targettedElement == "wind-speed") {
+
+            }
 
 
-           
+            // if(e!==undefined && !targettedElementString.includes("weather-selection-box")){
+            //     console.log(targettedElementString)
+            //     // if (targettedElementString === 
+            // }
+
+
+
+
+
         },
-        createOtherCharts(e){
-            console.log(e.target.value)
 
-        },
+
 
 
 
@@ -602,7 +988,9 @@ const app = new Vue({
 
 
             this.createChart(this.weatherForecast.dateArrayOnlyUniqueNumbersFirst)
+
             this.date = this.weatherForecast.firstDateOfTheDataSet
+            this.currentDate = this.weatherForecast.firstDateOfTheDataSet
             console.log(this.weatherForecast + "after fetched data")
 
 
