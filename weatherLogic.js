@@ -266,12 +266,82 @@ const app = new Vue({
                     let celsiusRounded = Math.round((celsius) * 10) / 10
                     return celsiusRounded
                 },
-                getSelectedElement(e){
+                getSelectedElementDayNumber(e){
                     console.log(e)
                     let targettedDate = e.target.innerText
                     console.log(targettedDate)
 
+                    let dateWithMonthInLetters =''
+                    let targettedDateString = JSON.stringify(targettedDate)
+
+                    if(targettedDateString.includes("-1-")){
+                        
+                        dateWithMonthInLetters = targettedDateString.replace("-1-", "-january-")
+                        
+                    }
+                    if(targettedDateString.includes("-2-")){
+                        
+                        dateWithMonthInLetters = targettedDateString.replace("-2-", "-february-")
+                        
+                    }
+                    if(targettedDateString.includes("-3-")){
+                        
+                        dateWithMonthInLetters = targettedDateString.replace("-3-", "-march-")
+                        
+                    }
+                    if(targettedDateString.includes("-4-")){
+                        
+                        dateWithMonthInLetters = targettedDateString.replace("-4-", "-april-")
+                        
+                    }
+                    if(targettedDateString.includes("-5-")){
+                        
+                        dateWithMonthInLetters = targettedDateString.replace("-5-", "-may-")
+                        
+                    }
+                    if(targettedDateString.includes("-6-")){
+                        
+                        dateWithMonthInLetters = targettedDateString.replace("-6-", "-june-")
+                        
+                    }
+                    if(targettedDateString.includes("-7-")){
+                        
+                        dateWithMonthInLetters = targettedDateString.replace("-7-", "-july-")
+                        
+                    }
+                    if(targettedDateString.includes("-8-")){
+                        
+                        dateWithMonthInLetters = targettedDateString.replace("-8-", "-august-")
+                        
+                    }
+                    if(targettedDateString.includes("-9-")){
+                        
+                        dateWithMonthInLetters = targettedDateString.replace("-9-", "-september-")
+                        
+                    }
+                    if(targettedDateString.includes("-10-")){
+                        
+                        dateWithMonthInLetters = targettedDateString.replace("-10-", "-oktober-")
+                        
+                    }
+                    if(targettedDateString.includes("-11-")){
+                        
+                        dateWithMonthInLetters = targettedDateString.replace("-11-", "-november-")
+                        
+                    }
+                    if(targettedDateString.includes("-12-")){
+                        
+                        dateWithMonthInLetters = targettedDateString.replace("-12-", "-december-")
+                        
+                    }
+                   
                     //do createchart with this date//
+                    var unixtime = Date.parse(dateWithMonthInLetters)/1000
+                    
+                    let dayOfTheWeekNumber = this.convertUnixTimeStapToTime(unixtime).day
+                    this.createChart(dayOfTheWeekNumber)
+                    console.log(targettedDateString)
+                    this.weatherForecast.forecastDate =targettedDateString
 
          
        
@@ -323,32 +393,37 @@ const app = new Vue({
                     }
                     dateArrayOnlyUniqueNumbers.shift()
                     this.weatherForecast.dateArrayOnlyUniqueNumbers = dateArrayOnlyUniqueNumbers
+                    this.weatherForecast.forecastDate = dateArrayOnlyUniqueNumbers[0]
+
                     },
-                    createChart() {
+                    createChart(dayOfTheWeekNumber) {
 
 
-                            let firstDayOfTheDataset = this.convertUnixTimeStapToTime(this.weatherForecast.list[0].dt).day
-                            console.log(firstDayOfTheDataset)
-
-
+                          
+                            //always needed//
                             let weatherData = this.weatherForecast
-                            let timeCalculator = this.convertUnixTimeStapToTime
-                            let temperature = []
-                            let feelsLike = []
                             let forecastDate = []
                             let time = []
+                            let timeCalculator = this.convertUnixTimeStapToTime
 
+                            //this needs to be the date where one clicks on//
+                            // let firstDayOfTheDataset = this.convertUnixTimeStapToTime(this.weatherForecast.list[0].dt).day
+
+                            //this needs to be populated with the data based on the day where one clicks on//
+                            let temperature = []
+                            let feelsLike = []
+                            
+                           
                             for (i = 0; i < this.weatherForecast.list.length; i++) {
-                                console.log(weatherData.list[i].dt)
-                                console.log(timeCalculator(weatherData.list[i].dt).day)
-                                if (timeCalculator(weatherData.list[i].dt).day === firstDayOfTheDataset) {
-                                    console.log("4444")
+                            
+                                 //firstDayOfTheDataSet needs to be the date where one clicks on//
+                                if (timeCalculator(weatherData.list[i].dt).day === dayOfTheWeekNumber) {
+                                  
                                     temperature.push(weatherData.list[i].main.temp)
-                                    time.push(this.convertUnixTimeStapToTime(weatherData.list[i].dt).dateNumber + "-" +
-                                        this.convertUnixTimeStapToTime(weatherData.list[i].dt).monthNumber + "-" +
-                                        this.convertUnixTimeStapToTime(weatherData.list[i].dt).year + ", " +
+                                    time.push(
                                         this.convertUnixTimeStapToTime(weatherData.list[i].dt).formattedTime
                                     )
+                                    console.log(time)
                                     forecastDate.push(this.convertUnixTimeStapToTime(weatherData.list[i].dt).dateNumber + "-" +
                                         this.convertUnixTimeStapToTime(weatherData.list[i].dt).monthNumber + "-" +
                                         this.convertUnixTimeStapToTime(weatherData.list[i].dt).year
@@ -357,7 +432,7 @@ const app = new Vue({
                                     feelsLike.push(weatherData.list[i].main.feels_like)
 
                                 }
-                                console.log(feelsLike)
+                              
 
 
 
@@ -393,7 +468,7 @@ const app = new Vue({
                                         scales: {
                                             xAxes: [{
                                                 ticks: {
-                                                    fontSize: 30,
+                                                    fontSize: 15,
                                                     fontColor: 'white',
                                                 }
                                             }],
@@ -416,7 +491,7 @@ const app = new Vue({
                                     }
                                 });
                             }
-                            this.weatherForecast.forecastDate = forecastDate[0]
+                           
                         },
 
 
@@ -469,7 +544,7 @@ const app = new Vue({
 
                                 // this.datalogger()
 
-                                this.createChart()
+                                // this.createChart()
                                 this.dateBuilder()
 
                             },

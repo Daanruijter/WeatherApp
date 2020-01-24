@@ -114,6 +114,7 @@
             width: 50%;
             font-size: 130%;
             padding-left: 13%;
+            border-color: purple;
             /* margin: 0 auto; */
 
 
@@ -163,7 +164,7 @@
             /* text-align: center; */
             padding-left: 13%;
             border-style: solid;
-            border-radius: 2px;
+            border-color: purple;
             border-width: 2px;
             border-radius: 20px;
             width: 50%;
@@ -312,7 +313,7 @@
                 </div>
                 <div class="date-parent-flexer">
                 <div class = date-parent">
-                <div class="weather-selection-box" v-for="item in weatherForecast.dateArrayOnlyUniqueNumbers" v-on:click ="getSelectedElement">
+                <div class="weather-selection-box" v-for="item in weatherForecast.dateArrayOnlyUniqueNumbers" v-on:click ="getSelectedElementDayNumber">
                     {{item}}
                     
                     </div>
