@@ -187,8 +187,8 @@
             text-align: center;
             margin-top: 5%;
             margin-bottom: 10%;
-            width: 85%;
-            height: 85%;
+            width: 80%;
+            height: 80%;
 
 
 
@@ -199,16 +199,13 @@
         }
 
         .date-parent {
-            display: flex;
-
-
-
-
+            width: 100%;
+            color: yellow
         }
 
         .date-parent-flexer {
             display: flex;
-
+            width: 25%;
             align-self: center;
 
 
@@ -225,10 +222,21 @@
 
         }
 
+        .checkboxesBox {
+            background-color: orange;
+            font-weight: bold;
+            border-style: solid;
+            padding:5%;
+            border-radius:20px;
+            margin-right: 5%;
+            color:white;
+
+        }
+
         .weather-selection-box {
             display: flex;
             /* background-color: darkorange; */
-            margin-top: 20%;
+           
             color: yellow;
             padding: 1%;
             flex-direction: row;
@@ -243,12 +251,12 @@
 
         /* weathertype box*/
         .weather-type-box-forecast {
-            padding:1%;
+            padding: 1%;
             font-weight: bold;
             background-color: purple;
             width: 80%;
             margin: 0 auto;
-            border-radius: 10%;
+            border-radius: 20px;
             margin-bottom: 10%;
         }
 
@@ -368,7 +376,28 @@
                     <canvas id="myChart"></canvas>
                 </div>
                 <div class="date-parent-flexer">
-                    <div class=date-parent">
+                    <div class="date-parent">
+                        <div class="checkboxesBox">Select for other data<br>
+                            
+                            <input type="checkbox" v-model="isChecked" name="air-pressure" id="air-pressure" value="air-pressure" @click="getSelectedElementDayNumber">   
+                            <label for="air-pressure">air pressure</label><br>
+                            
+                            <input type="checkbox" v-model="isChecked" name="humidity" id="humidity" value="humidity" @click="getSelectedElementDayNumber">
+                            <label for="humidity">humidity</label><br>
+                            
+                            <input type="checkbox" v-model="isChecked" name="cloud-coverage" id="cloud-coverage" value="cloud-coverage" @click="getSelectedElementDayNumber">
+                           <label for="cloud-coverage">cloud coverage</label><br>
+                          
+                            <input type="checkbox"  v-model="isChecked"name="wind-direction" id="wind-direction" value="wind-direction" @click="getSelectedElementDayNumber">
+                            <label for="wind-direction">wind direction</label><br>
+                            
+                            <input type="checkbox" v-model="isChecked" name="wind-speed" id="wind-speed" value="wind-speed" @click="getSelectedElementDayNumber">
+                            <label for="wind-speed">wind speed</label><br>
+                            
+
+                            
+                        </div><br>
+                        Click date for forecasts
                         <div class="weather-selection-box" v-for="item in weatherForecast.dateArrayOnlyUniqueNumbers"
                             v-on:click="getSelectedElementDayNumber">
                             {{item}}
@@ -376,22 +405,21 @@
 
 
                         </div>
-                    </div>
-                    <div>
+                        <//div> <div>
                     </div>
 
 
         </main>
         <div class="weather-type-box-forecast">
             <div class="weather-time-flexer">
-                <p class="weather-time-forecast-title">Weather type for:{{date}}</p>
+                <p class="weather-time-forecast-title">Weather type for: {{date}}</p>
                 <div class="weather-time-forecast" v-for="item in weatherForecast.weatherTime">
                     {{item }}
                 </div>
             </div>
             <div class="weather-type-flexer">
 
-                <p class="weather-type-forecast-title">Weather type for:{{date}}</p>
+                <p class="weather-type-forecast-title">Weather type for: {{date}}</p>
                 <div class="weather-type-forecast" v-for="item in weatherForecast.weatherType">
                     {{item}}
                 </div>

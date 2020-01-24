@@ -20,7 +20,8 @@ const app = new Vue({
         weatherForecast: {
             forecastDate: 'test'
         },
-        dateClicked: ''
+        dateClicked: '',
+        isChecked:["air-pressure", "humidity", "cloud-coverage", "wind-direction", "wind-speed"],
 
 
     },
@@ -273,7 +274,7 @@ const app = new Vue({
             console.log(e)
 
             let targettedDate = e.target.innerText
-
+            let t=e
             console.log(targettedDate)
 
             let dateWithMonthInLetters = ''
@@ -344,7 +345,7 @@ const app = new Vue({
             var unixtime = Date.parse(dateWithMonthInLetters) / 1000
 
             let dayOfTheWeekNumber = this.convertUnixTimeStapToTime(unixtime).day
-            this.createChart(dayOfTheWeekNumber)
+            this.createChart(dayOfTheWeekNumber, t)
             console.log(targettedDateString)
             console.log(this.weatherForecast + "after click")
             this.date = targettedDate
@@ -402,9 +403,9 @@ const app = new Vue({
 
 
         },
-        createChart(dayOfTheWeekNumber) {
+        createChart(dayOfTheWeekNumber, e) {
 
-
+            
 
             //always needed//
             let weatherData = this.weatherForecast
@@ -523,11 +524,26 @@ const app = new Vue({
 
                     }
                 });
+
+                let targettedElement=''
                 console.log(forecastDate)
-            
+                if(e!==undefined){
+                targettedElement = e.target}
+                
+                
+                let targettedElementString = JSON.stringify(targettedElement)
+                console.log(targettedElementString)
+                if(e!==undefined && !targettedElementString.includes("weather-selection-box")){
+                    console.log(e.target)
+                }
+
+                
 
 
-
+           
+        },
+        createOtherCharts(e){
+            console.log(e.target.value)
 
         },
 
