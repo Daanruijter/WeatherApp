@@ -506,6 +506,10 @@ const app = new Vue({
             console.log(windSpeed)
             console.log(windSpeedDegrees)
 
+            console.log(targetElementOtherData.target.value)
+
+            //create a chart for air pressure//
+            if (targetElementOtherData.target.value === "air-pressure"){console.log("dfdfdkfhdkfjd")
 
             var ctx = document.getElementById('myChart').getContext('2d');
             var chart = new Chart(ctx, {
@@ -520,18 +524,12 @@ const app = new Vue({
 
                     datasets: [{
 
-                        label: 'Temperature during the day',
+                        label: 'Air pressure during the day',
                         // backgroundColor: 'rgb(255, 99, 132)',
                         borderColor: 'rgb(255, 99, 132)',
-                        data: temperature,
+                        data: pressure,
 
-                    }, {
-                        label: 'Temperature feels like',
-                        // backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(255,255,0)',
-                        data: feelsLike,
-
-                    }]
+                    }, ]
                 },
 
 
@@ -566,100 +564,239 @@ const app = new Vue({
                 }
             });
 
+        }
 
-            // //creating other charts under conditions//
-            // console.log(this.currentDate)
-            // console.log(e)
-            // let targettedElement = ''
-            // console.log(forecastDate)
-            // if (e !== undefined) {
-            //     targettedElement = e.target.value
-            // }
-            // console.log(targettedElement)
+        //create chart for humidity//
+        if (targetElementOtherData.target.value === "humidity"){console.log("dfdfdkfhdkfjd")
 
-
-            // let targettedElementString = JSON.stringify(targettedElement)
-            // console.log(targettedElementString)
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
 
 
-            // if (targettedElement == "air-pressure") {
-            //     dayOfTheWeekNumber =6
-            //     ctx = document.getElementById('myChart').getContext('2d');
-            //     ctx.innerText=""
-            // var chart = new Chart(ctx, {
-            //     // The type of chart we want to create
-            //     type: 'line',
+                // The data for our dataset
+                data: {
+
+                    labels: time,
+
+                    datasets: [{
+
+                        label: 'Humidity during the day',
+                        // backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: humidity,
+
+                    }, ]
+                },
 
 
-            //     // The data for our dataset
-            //     data: {
+                // Configuration options go here
+                options: {
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                fontSize: 15,
+                                fontColor: 'white',
 
-            //         labels: time,
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
 
-            //         datasets: [{
+                                fontSize: 30,
+                                fontColor: 'white',
+                            }
+                        }],
 
-            //             label: 'Air-pressure during the day',
-            //             // backgroundColor: 'rgb(255, 99, 132)',
-            //             borderColor: 'rgb(255, 99, 132)',
-            //             data: pressure,
-
-            //         }, ]
-            //     },
-
-
-            //     // Configuration options go here
-            //     options: {
-            //         scales: {
-            //             xAxes: [{
-            //                 ticks: {
-            //                     fontSize: 15,
-            //                     fontColor: 'white',
-
-            //                 }
-            //             }],
-            //             yAxes: [{
-            //                 ticks: {
-
-            //                     fontSize: 30,
-            //                     fontColor: 'white',
-            //                 }
-            //             }],
-
-            //         },
-            //         legend: {
-            //             labels: {
-            //                 // This more specific font property overrides the global property
-            //                 fontColor: 'white',
-            //                 fontSize: 30,
-            //             }
-            //         },
+                    },
+                    legend: {
+                        labels: {
+                            // This more specific font property overrides the global property
+                            fontColor: 'white',
+                            fontSize: 30,
+                        }
+                    },
 
 
-            //     }
-            // });
+                }
+            });
 
-            // }
-            // if (targettedElement == "humidity") {
+        }
 
-            // }
-            // if (targettedElement == "cloud-coverage") {
+        //create chart for humidity//
+        if (targetElementOtherData.target.value === "cloud-coverage"){console.log("dfdfdkfhdkfjd")
 
-            // }
-            // if (targettedElement == "wind-direction") {
-
-            // }
-            // if (targettedElement == "wind-speed") {
-
-            // }
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
 
 
-            // // if(e!==undefined && !targettedElementString.includes("weather-selection-box")){
-            // //     console.log(targettedElementString)
-            // //     // if (targettedElementString === 
-            // // }
+                // The data for our dataset
+                data: {
+
+                    labels: time,
+
+                    datasets: [{
+
+                        label: 'Cloud coverage during the day',
+                        // backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: cloudCoverage,
+
+                    }, ]
+                },
 
 
+                // Configuration options go here
+                options: {
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                fontSize: 15,
+                                fontColor: 'white',
 
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+
+                                fontSize: 30,
+                                fontColor: 'white',
+                            }
+                        }],
+
+                    },
+                    legend: {
+                        labels: {
+                            // This more specific font property overrides the global property
+                            fontColor: 'white',
+                            fontSize: 30,
+                        }
+                    },
+
+
+                }
+            });
+
+        }
+
+           //create chart for wind direction//
+        if (targetElementOtherData.target.value === "wind-direction"){console.log("dfdfdkfhdkfjd")
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'line',
+
+
+            // The data for our dataset
+            data: {
+
+                labels: time,
+
+                datasets: [{
+
+                    label: 'Wind direction during the day (degrees)',
+                    // backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: windSpeedDegrees,
+
+                }, ]
+            },
+
+
+            // Configuration options go here
+            options: {
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 15,
+                            fontColor: 'white',
+
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+
+                            fontSize: 30,
+                            fontColor: 'white',
+                        }
+                    }],
+
+                },
+                legend: {
+                    labels: {
+                        // This more specific font property overrides the global property
+                        fontColor: 'white',
+                        fontSize: 30,
+                    }
+                },
+
+
+            }
+        });
+
+    }
+
+      //create chart for wind speed//
+      if (targetElementOtherData.target.value === "wind-speed"){console.log("dfdfdkfhdkfjd")
+
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var chart = new Chart(ctx, {
+          // The type of chart we want to create
+          type: 'line',
+
+
+          // The data for our dataset
+          data: {
+
+              labels: time,
+
+              datasets: [{
+
+                  label: 'Wind speed during the day (m/s)',
+                  // backgroundColor: 'rgb(255, 99, 132)',
+                  borderColor: 'rgb(255, 99, 132)',
+                  data: windSpeed,
+
+              }, ]
+          },
+
+
+          // Configuration options go here
+          options: {
+              scales: {
+                  xAxes: [{
+                      ticks: {
+                          fontSize: 15,
+                          fontColor: 'white',
+
+                      }
+                  }],
+                  yAxes: [{
+                      ticks: {
+
+                          fontSize: 30,
+                          fontColor: 'white',
+                      }
+                  }],
+
+              },
+              legend: {
+                  labels: {
+                      // This more specific font property overrides the global property
+                      fontColor: 'white',
+                      fontSize: 30,
+                  }
+              },
+
+
+          }
+      });
+
+  }
 
 
         },
