@@ -412,15 +412,23 @@
         </main>
         <div class="weather-type-box-forecast">
             <div class="weather-time-flexer">
-                <p class="weather-time-forecast-title">Weather type for: {{date}}</p>
+                <p class="weather-time-forecast-title">Time for: {{date}}</p>
                 <div class="weather-time-forecast" v-for="item in weatherForecast.weatherTime">
                     {{item }}
                 </div>
             </div>
             <div class="weather-type-flexer">
 
-                <p class="weather-type-forecast-title">Weather type for: {{date}}</p>
+                <p class="weather-type-forecast-title">Weather type:</p>
                 <div class="weather-type-forecast" v-for="item in weatherForecast.weatherType">
+                    {{item}}
+                </div>
+
+            </div>
+            <div class="weather-type-flexer">
+
+                <p class="weather-type-forecast-title" v-if="typeof weatherForecast.windDirections !='undefined'" >Wind direction:</p>
+                <div class="weather-type-forecast" v-if="typeof weatherForecast.windDirections !='undefined'" v-for="item in weatherForecast.windDirections">
                     {{item}}
                 </div>
 

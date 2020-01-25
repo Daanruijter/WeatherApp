@@ -506,10 +506,24 @@ const app = new Vue({
             console.log(windSpeed)
             console.log(windSpeedDegrees)
 
+
             console.log(targetElementOtherData.target.value)
+            console.log(windSpeedDegrees)
+
+            let windDirections = []
+            for (i=0; i<windSpeedDegrees.length; i++){
+                windDirections.push(this.convertWindDegreesToWindDirection(windSpeedDegrees[i]))
+            }
+
+            
+            console.log(windDirections)
+            this.weatherForecast.windDirections = windDirections
 
             //create a chart for air pressure//
             if (targetElementOtherData.target.value === "air-pressure"){console.log("dfdfdkfhdkfjd")
+
+            
+           
 
             var ctx = document.getElementById('myChart').getContext('2d');
             var chart = new Chart(ctx, {
