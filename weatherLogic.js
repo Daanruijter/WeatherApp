@@ -11,7 +11,7 @@ const app = new Vue({
     el: '#app',
     data: {
         api_key: "fb2a017905db23f312a17b320e8c07d0",
-        query: 'oslo',
+        query: 'Amsterdam',
         url_base: "https://api.openweathermap.org/data/2.5/",
         weather: {},
         date: '',
