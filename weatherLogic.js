@@ -160,8 +160,8 @@ const app = new Vue({
             // console.log(formattedTime);
 
             return {
-                seconds: seconds,
-                minutes: minutes,
+                seconds,
+                minutes,
                 hours: hours,
                 day: day,
                 weekDay: weekDay,
@@ -1119,6 +1119,7 @@ const app = new Vue({
 
 
             this.weather.sys.sunriseConverted = this.convertUnixTimeStapToTime(this.weather.sys.sunrise).formattedTime
+            console.log(this.convertUnixTimeStapToTime(this.weather.main.temp))
             this.weather.sys.sunsetConverted = this.convertUnixTimeStapToTime(this.weather.sys.sunset).formattedTime
             this.weather.wind.windDirection = this.convertWindDegreesToWindDirection(this.weather.wind.deg)
 
